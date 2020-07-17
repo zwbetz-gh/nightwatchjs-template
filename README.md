@@ -115,7 +115,7 @@ NIGHTWATCH_PARALLEL_WORKERS=3
 
 ### Run by Skipping Folders
 
-    npm run base -- --skipgroup "src/tests/some_folder_1,src/tests/some_folder_2"
+    npm run base -- --skipgroup "src/tests/some_folder,src/tests/some_folder"
 
 ### Run by Tag
 
@@ -123,7 +123,7 @@ NIGHTWATCH_PARALLEL_WORKERS=3
 
 ### Run by Skipping Tags
 
-    npm run base -- --skiptags "SOME_TAG_1,SOME_TAG_2"
+    npm run base -- --skiptags "SOME_TAG,SOME_TAG"
 
 ## Other Commands
 
