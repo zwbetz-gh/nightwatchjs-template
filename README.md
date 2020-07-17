@@ -27,7 +27,7 @@ This repo is a distillation of personal lessons learned, providing a template to
   * [Clean Output Folder](#clean-output-folder)
   * [Make Output Folder](#make-output-folder)
   * [Write JSON, XML, HTML Reports](#write-json-xml-html-reports)
-  * [Write Tags Report](#write-tags-report)
+  * [Write Tags JSON, HTML Reports](#write-tags-json-html-reports)
 - [Output](#output)
   * [Reports](#reports)
   * [Screenshots](#screenshots)
@@ -145,7 +145,7 @@ NIGHTWATCH_PARALLEL_WORKERS=3
 
     npm run report
 
-### Write Tags Report
+### Write Tags JSON, HTML Reports
 
     npm run tags
 
