@@ -10,7 +10,6 @@ This repo is a distillation of personal lessons learned, providing a template to
 
 - [Regenerate Table of Contents](#regenerate-table-of-contents)
 - [Required Setup](#required-setup)
-- [Optional Setup](#optional-setup)
 - [Environment Variables](#environment-variables)
 - [Test Commands](#test-commands)
   * [Run All Tests](#run-all-tests)
@@ -53,21 +52,6 @@ This repo is a distillation of personal lessons learned, providing a template to
 1. Confirm environment variables with
 
         npm run env
-
-## Optional Setup
-
-1. Install [vscode](https://code.visualstudio.com/)
-1. Install these vscode extensions
-    - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-    - [DotENV](https://marketplace.visualstudio.com/items?itemName=mikestead.dotenv)
-1. Add these vscode settings to format on save
-
-        {
-          "editor.formatOnSave": true,
-          "editor.codeActionsOnSave": {
-            "source.fixAll": true
-          },
-        }
 
 ## Environment Variables
 
