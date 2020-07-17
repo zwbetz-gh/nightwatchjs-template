@@ -9,7 +9,7 @@ This repo is a distillation of personal lessons learned, providing a template to
 <!-- toc -->
 
 - [Regenerate Table of Contents](#regenerate-table-of-contents)
-- [Required Setup](#required-setup)
+- [Setup](#setup)
 - [Environment Variables](#environment-variables)
 - [Test Commands](#test-commands)
   * [Run All Tests](#run-all-tests)
@@ -41,7 +41,7 @@ This repo is a distillation of personal lessons learned, providing a template to
 
     npm run toc
 
-## Required Setup
+## Setup
 
 1. Install [NodeJS](https://nodejs.org/en/download/) version 12 or higher
 1. Install dependencies
