@@ -1,7 +1,11 @@
 const process = require('process');
 const path = require('path');
-const {walk, writeDataToFile, writeDataToJsonFile} = require('./shared');
-const {reportDir} = require('./report');
+const {
+  walk,
+  writeDataToFile,
+  makePrettyJson,
+  getReportDir
+} = require('./shared');
 const {metaTableHead, makeHtmlTemplate, makeTable} = require('./report_html');
 
 const getTests = (filePaths) => {
@@ -137,7 +141,8 @@ const makeHtmlReport = (reportData) => {
 };
 
 const writeJsonReport = (reportData, filePath) => {
-  writeDataToJsonFile(reportData, filePath);
+  const jsonString = makePrettyJson(reportData);
+  writeDataToFile(jsonString, filePath);
 };
 
 const writeHtmlReport = (reportData, filePath) => {
@@ -149,8 +154,8 @@ const main = () => {
   const reportData = makeReportData();
 
   const reportName = 'nightwatch_tags_report';
-  const jsonReportFilePath = path.resolve(reportDir, `${reportName}.json`);
-  const htmlReportFilePath = path.resolve(reportDir, `${reportName}.html`);
+  const jsonReportFilePath = path.resolve(getReportDir(), `${reportName}.json`);
+  const htmlReportFilePath = path.resolve(getReportDir(), `${reportName}.html`);
 
   writeJsonReport(reportData, jsonReportFilePath);
   writeHtmlReport(reportData, htmlReportFilePath);

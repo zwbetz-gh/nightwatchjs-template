@@ -1,16 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 const xml2js = require('xml2js');
-const env = require('./env');
-const {walk, writeDataToFile, writeDataToJsonFile} = require('./shared');
+const {
+  walk,
+  writeDataToFile,
+  makePrettyJson,
+  getReportDir
+} = require('./shared');
 const {makeHtmlReport} = require('./report_html');
 const {makeXmlReport} = require('./report_xml');
-
-const reportDir = path.resolve(
-  process.cwd(),
-  env.getEnv().NIGHTWATCH_OUTPUT_FOLDER,
-  'report'
-);
 
 const convertXmlStringToJsObject = async (xmlString) => {
   try {
@@ -31,7 +29,7 @@ const isXmlFile = (filePath) => {
 
 const parseXmlReports = async (exemptFilePath) => {
   const reports = [];
-  const files = walk(reportDir) || [];
+  const files = walk(getReportDir()) || [];
   for (const file of files) {
     if (isXmlFile(file) && !file.includes(exemptFilePath)) {
       console.log(`Parsing XML file ${file}`);
@@ -44,7 +42,8 @@ const parseXmlReports = async (exemptFilePath) => {
 };
 
 const writeJsonReport = (reportData, filePath) => {
-  writeDataToJsonFile(reportData, filePath);
+  const jsonString = makePrettyJson(reportData);
+  writeDataToFile(jsonString, filePath);
 };
 
 const writeXmlReport = (reportData, filePath) => {
@@ -59,9 +58,9 @@ const writeHtmlReport = (reportData, filePath) => {
 
 const main = async () => {
   const reportName = 'nightwatch_report';
-  const jsonReportFilePath = path.resolve(reportDir, `${reportName}.json`);
-  const xmlReportFilePath = path.resolve(reportDir, `${reportName}.xml`);
-  const htmlReportFilePath = path.resolve(reportDir, `${reportName}.html`);
+  const jsonReportFilePath = path.resolve(getReportDir(), `${reportName}.json`);
+  const xmlReportFilePath = path.resolve(getReportDir(), `${reportName}.xml`);
+  const htmlReportFilePath = path.resolve(getReportDir(), `${reportName}.html`);
 
   const reportData = await parseXmlReports(xmlReportFilePath);
   writeJsonReport(reportData, jsonReportFilePath);
@@ -70,7 +69,3 @@ const main = async () => {
 };
 
 main();
-
-module.exports = {
-  reportDir
-};

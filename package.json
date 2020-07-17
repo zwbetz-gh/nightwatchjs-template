@@ -15,7 +15,7 @@
     "sys": "node src/shared/sys.js --log",
     "env": "node src/shared/env.js --log",
     "report": "npm run mkoutput && node src/shared/report.js",
-    "tags": "node src/shared/tags.js",
+    "tags": "npm run mkoutput && node src/shared/tags.js",
     "clean": "node src/shared/clean.js",
     "mkoutput": "node src/shared/mkoutput.js",
     "base": "npm run clean && npm run mkoutput && npm run env && nightwatch",

@@ -1,14 +1,25 @@
 const process = require('process');
 const chromedriver = require('chromedriver');
 const {argv} = require('yargs');
-const {
-  convertToBoolean,
-  convertToIntegerIfInteger,
-  makePrettyJson
-} = require('./shared');
+const {makePrettyJson} = require('./shared');
 require('dotenv').config({path: '.env'});
 
 let env = {};
+
+const convertToBoolean = (val) => {
+  if (val === 'true') {
+    return true;
+  }
+  return false;
+};
+
+const convertToIntegerIfInteger = (val) => {
+  const parsed = Number.parseInt(val, 10);
+  if (Number.isInteger(parsed)) {
+    return parsed;
+  }
+  return val;
+};
 
 const setEnv = () => {
   env = {

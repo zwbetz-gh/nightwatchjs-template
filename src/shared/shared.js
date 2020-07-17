@@ -1,6 +1,15 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const env = require('./env');
+
+const getReportDir = () => {
+  return path.resolve(
+    process.cwd(),
+    env.getEnv().NIGHTWATCH_OUTPUT_FOLDER,
+    'report'
+  );
+};
 
 const walk = (dir) => {
   try {
@@ -37,16 +46,6 @@ const writeDataToFile = (data, filePath) => {
   }
 };
 
-const writeDataToJsonFile = (data, filePath) => {
-  try {
-    const string = makePrettyJson(data);
-    console.log(`Writing JSON file to ${filePath}`);
-    fs.writeFileSync(filePath, string);
-  } catch (error) {
-    console.error(`Error when writing data to JSON file ${filePath}`, error);
-  }
-};
-
 const readDataFromFile = (filePath) => {
   try {
     console.log(`Reading file from ${filePath}`);
@@ -57,42 +56,13 @@ const readDataFromFile = (filePath) => {
   }
 };
 
-const readDataFromJsonFile = (filePath) => {
-  try {
-    console.log(`Reading JSON file from ${filePath}`);
-    const string = fs.readFileSync(filePath, 'utf8');
-    const parsed = JSON.parse(string);
-    return parsed;
-  } catch (error) {
-    console.error(`Error when reading data from JSON file ${filePath}`, error);
-  }
-};
-
-const convertToBoolean = (val) => {
-  if (val === 'true') {
-    return true;
-  }
-  return false;
-};
-
-const convertToIntegerIfInteger = (val) => {
-  const parsed = Number.parseInt(val, 10);
-  if (Number.isInteger(parsed)) {
-    return parsed;
-  }
-  return val;
-};
-
 const isWindows = () => os.platform() === 'win32';
 
 module.exports = {
+  getReportDir,
   walk,
   makePrettyJson,
   writeDataToFile,
-  writeDataToJsonFile,
   readDataFromFile,
-  readDataFromJsonFile,
-  convertToBoolean,
-  convertToIntegerIfInteger,
   isWindows
 };
