@@ -1,4 +1,5 @@
 const hooks = require('../../shared/hooks');
+const keys = require('../../constants/keys');
 
 module.exports = {
   '@disabled': false,
@@ -28,7 +29,7 @@ module.exports = {
       .setValue(selector, 'template')
       .custom_clear_value(selector)
       .setValue(selector, 'template')
-      .keys(browser.Keys.RETURN)
+      .keys(keys.RETURN)
       .custom_take_screenshot('duckduckgo');
   }
 };
