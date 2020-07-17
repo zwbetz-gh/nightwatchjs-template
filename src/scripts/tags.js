@@ -6,7 +6,11 @@ const {
   makePrettyJson,
   getReportDir
 } = require('../shared/shared');
-const {metaTableHead, makeHtmlTemplate, makeTable} = require('../shared/report_html');
+const {
+  metaTableHead,
+  makeHtmlTemplate,
+  makeTable
+} = require('../shared/report_html');
 
 const getTests = (filePaths) => {
   const tests = [];

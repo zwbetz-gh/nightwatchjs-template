@@ -28,6 +28,7 @@ This repo is a distillation of personal lessons learned, providing a template to
   * [Make Output Folder](#make-output-folder)
   * [Write JSON, XML, HTML Reports](#write-json-xml-html-reports)
   * [Write Tags JSON, HTML Reports](#write-tags-json-html-reports)
+  * [Run Prettier](#run-prettier)
 - [Output](#output)
   * [Reports](#reports)
   * [Screenshots](#screenshots)
@@ -148,6 +149,10 @@ NIGHTWATCH_PARALLEL_WORKERS=3
 ### Write Tags JSON, HTML Reports
 
     npm run tags
+
+### Run Prettier
+
+    npm run prettier
 
 ## Output
 

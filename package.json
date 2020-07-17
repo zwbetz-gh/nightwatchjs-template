@@ -20,13 +20,15 @@
     "mkoutput": "node src/scripts/mkoutput.js",
     "base": "npm run clean && npm run mkoutput && npm run env && nightwatch",
     "test": "npm run base && npm run report",
-    "toc": "markdown-toc -i README.md"
+    "toc": "markdown-toc -i README.md",
+    "prettier": "prettier --write src"
   },
   "dependencies": {
     "chromedriver": "^83.0.0",
     "dotenv": "^8.2.0",
     "markdown-toc": "^1.2.0",
     "nightwatch": "^1.3.6",
+    "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
     "shortid": "^2.2.15",
     "xml": "^1.0.1",
