@@ -1,9 +1,9 @@
 const process = require('process');
 const path = require('path');
 const rimraf = require('rimraf');
-const env = require('./env');
+const env = require('../shared/env');
 
-const clean = () => {
+const main = () => {
   const outputDir = path.resolve(
     process.cwd(),
     env.getEnv().NIGHTWATCH_OUTPUT_FOLDER
@@ -16,10 +16,4 @@ const clean = () => {
   });
 };
 
-const main = () => {
-  clean();
-};
-
 main();
-
-module.exports = clean;

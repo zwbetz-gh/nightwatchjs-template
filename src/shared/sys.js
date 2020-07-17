@@ -1,5 +1,4 @@
 const os = require('os');
-const {argv} = require('yargs');
 const {makePrettyJson} = require('./shared');
 
 let sys = {};
@@ -34,14 +33,6 @@ const logSys = () => {
   const string = makePrettyJson(sys);
   console.log(string);
 };
-
-const main = () => {
-  if (argv.log) {
-    logSys();
-  }
-};
-
-main();
 
 module.exports = {
   getSys,

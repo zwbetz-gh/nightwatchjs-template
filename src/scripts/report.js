@@ -6,9 +6,9 @@ const {
   writeDataToFile,
   makePrettyJson,
   getReportDir
-} = require('./shared');
-const {makeHtmlReport} = require('./report_html');
-const {makeXmlReport} = require('./report_xml');
+} = require('../shared/shared');
+const {makeHtmlReport} = require('../shared/report_html');
+const {makeXmlReport} = require('../shared/report_xml');
 
 const convertXmlStringToJsObject = async (xmlString) => {
   try {

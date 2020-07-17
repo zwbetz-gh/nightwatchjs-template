@@ -1,6 +1,5 @@
 const process = require('process');
 const chromedriver = require('chromedriver');
-const {argv} = require('yargs');
 const {makePrettyJson} = require('./shared');
 require('dotenv').config({path: '.env'});
 
@@ -68,14 +67,6 @@ const logEnv = () => {
   const string = makePrettyJson(env);
   console.log(string);
 };
-
-const main = () => {
-  if (argv.log) {
-    logEnv();
-  }
-};
-
-main();
 
 module.exports = {
   getEnv,

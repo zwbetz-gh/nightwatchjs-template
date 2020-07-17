@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
-const env = require('./env');
+const env = require('../shared/env');
 
-const mkoutput = () => {
+const main = () => {
   const outputDir = path.resolve(
     process.cwd(),
     env.getEnv().NIGHTWATCH_OUTPUT_FOLDER
@@ -17,10 +17,4 @@ const mkoutput = () => {
   }
 };
 
-const main = () => {
-  mkoutput();
-};
-
 main();
-
-module.exports = mkoutput;
