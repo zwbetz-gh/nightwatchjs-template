@@ -33,6 +33,8 @@ This repo is a distillation of personal lessons learned, providing a template to
   * [Reports](#reports)
   * [Screenshots](#screenshots)
 - [Rules](#rules)
+- [Sample Reports](#sample-reports)
+- [Sample App](#sample-app)
 
 <!-- tocstop -->
 
@@ -189,3 +191,11 @@ Screenshots will be saved to folder
         waitForElementVisible('@someElement', 15 * 1000)
 
 - Name source files with snake case
+
+## Sample Reports
+
+TODO
+
+## Sample App
+
+TODO
