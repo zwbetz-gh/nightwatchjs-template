@@ -43,14 +43,14 @@ This repo is a distillation of personal lessons learned, providing a template to
 ## Required Setup
 
 1. Install [NodeJS](https://nodejs.org/en/download/) version 12 or higher
+1. Install dependencies
+
+        npm install
+
 1. Copy file `.env.sample` to file `.env`, then edit the values as you wish
 1. Confirm environment variables with
 
         npm run env
-
-1. Install dependencies
-
-        npm install
 
 ## Optional Setup
 
