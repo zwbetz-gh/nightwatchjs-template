@@ -1,0 +1,36 @@
+{
+  "name": "nightwatchjs-template",
+  "description": "NightwatchJS Template",
+  "repository": {
+    "type": "git",
+    "url": "TODO"
+  },
+  "license": "MIT",
+  "version": "0.1.0",
+  "type": "commonjs",
+  "scripts": {
+    "config": "node src/shared/config.js",
+    "help": "nightwatch --help",
+    "info": "nightwatch --info",
+    "sys": "node src/shared/sys.js --log",
+    "env": "node src/shared/env.js --log",
+    "report": "npm run mkoutput && node src/shared/report.js",
+    "tags": "node src/shared/tags.js",
+    "clean": "node src/shared/clean.js",
+    "mkoutput": "node src/shared/mkoutput.js",
+    "base": "npm run clean && npm run mkoutput && npm run env && nightwatch",
+    "test": "npm run base && npm run report",
+    "toc": "markdown-toc -i README.md"
+  },
+  "dependencies": {
+    "chromedriver": "^83.0.0",
+    "dotenv": "^8.2.0",
+    "markdown-toc": "^1.2.0",
+    "nightwatch": "^1.3.6",
+    "rimraf": "^3.0.2",
+    "shortid": "^2.2.15",
+    "xml": "^1.0.1",
+    "xml2js": "^0.4.23",
+    "yargs": "^15.3.1"
+  }
+}

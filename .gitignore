@@ -1,0 +1,15 @@
+# Project-specific
+node_modules/
+tests_output/
+.env
+debug.log
+chromedriver.log
+
+# Mac
+.DS_Store
+
+# IDE
+.idea/
+
+# Miscellaneous
+local_git_config.sh
