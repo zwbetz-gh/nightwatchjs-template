@@ -31,5 +31,7 @@ module.exports = {
       .setValue(selector, 'template')
       .keys(keys.RETURN)
       .custom_take_screenshot('duckduckgo');
+
+    browser.assert.equal(1, 2);
   }
 };

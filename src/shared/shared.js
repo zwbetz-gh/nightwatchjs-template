@@ -3,13 +3,8 @@ const path = require('path');
 const os = require('os');
 const env = require('./env');
 
-const getReportDir = () => {
-  return path.resolve(
-    process.cwd(),
-    env.getEnv().NIGHTWATCH_OUTPUT_FOLDER,
-    'report'
-  );
-};
+const getReportDir = () =>
+  path.resolve(process.cwd(), env.getEnv().NIGHTWATCH_OUTPUT_FOLDER, 'report');
 
 const walk = (dir) => {
   try {
@@ -39,20 +34,23 @@ const makePrettyJson = (data) => {
 
 const writeDataToFile = (data, filePath) => {
   try {
-    console.log(`Writing file to ${filePath}`);
+    console.log(`Writing file ${filePath}`);
     fs.writeFileSync(filePath, data);
   } catch (error) {
-    console.error(`Error when writing data to file ${filePath}`, error);
+    console.error(`Error when writing file ${filePath}`, error);
   }
 };
 
-const readDataFromFile = (filePath) => {
+const readDataFromFile = (filePath, encoding = 'utf8') => {
   try {
-    console.log(`Reading file from ${filePath}`);
-    const string = fs.readFileSync(filePath, 'utf8');
+    console.log(`Using encoding ${encoding} to read file ${filePath}`);
+    const string = fs.readFileSync(filePath, encoding);
     return string;
   } catch (error) {
-    console.error(`Error when reading data from file ${filePath}`, error);
+    console.error(
+      `Error when using encoding ${encoding} to read file ${filePath}`,
+      error
+    );
   }
 };
 

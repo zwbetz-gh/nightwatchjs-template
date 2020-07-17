@@ -19,7 +19,7 @@
     "clean": "node src/scripts/clean.js",
     "mkoutput": "node src/scripts/mkoutput.js",
     "base": "npm run clean && npm run mkoutput && npm run env && nightwatch",
-    "test": "npm run base && npm run report",
+    "test": "npm run base ; npm run report",
     "toc": "markdown-toc -i README.md",
     "prettier": "prettier --write src"
   },

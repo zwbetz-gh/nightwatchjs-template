@@ -62,8 +62,39 @@ const calcTestMessages = (data) => {
   }
 
   return messages
-    .map((message) => `<pre><code>${message}</code></pre>`)
+    .map(
+      (message) =>
+        `<pre style="white-space: pre-wrap;"><code>${message}</code></pre>`
+    )
     .join('\n');
+};
+
+const getTestScreenshot = (data) => {
+  let screenshot = '';
+
+  const systemOutNode = data.testsuites.testsuite[0].testcase[0]['system-out'];
+  if (!systemOutNode) {
+    return screenshot;
+  }
+
+  try {
+    const filePath = systemOutNode[0]
+      .replace('[[ATTACHMENT|', '')
+      .replace(']]', '');
+    const base64 = readDataFromFile(filePath, 'base64');
+    const maxWidth = '1200px';
+    const maxHeight = '1200px';
+    screenshot = `
+    <img 
+      style="max-width: ${maxWidth}; max-height: ${maxHeight};" 
+      src="data:image/png;base64,${base64}" 
+      alt="screenshot" />
+    `;
+  } catch (error) {
+    console.error('Error when getting screenshot', error);
+  }
+
+  return screenshot;
 };
 
 const calcTotalTests = (reportData) => reportData.length;
@@ -218,7 +249,8 @@ const makeTestsTable = (reportData) => {
     'Assertions',
     'Errors',
     'Failures',
-    'Messages'
+    'Messages',
+    'Screenshot'
   ];
 
   const testsTableHead = testsTableHeaders
@@ -242,6 +274,7 @@ const makeTestsTable = (reportData) => {
         ? 'background-color: #ffeeba;'
         : ''
     }">${calcTestMessages(data)}</td>
+    <td>${getTestScreenshot(data)}</td>
   </tr>
   `
     )
