@@ -24,7 +24,7 @@ const setEnv = () => {
   env = {
     NIGHTWATCH_LAUNCH_URL:
       process.env.NIGHTWATCH_LAUNCH_URL === undefined
-        ? 'https://duckduckgo.com'
+        ? 'http://localhost:5000'
         : process.env.NIGHTWATCH_LAUNCH_URL,
     NIGHTWATCH_ENVIRONMENT:
       process.env.NIGHTWATCH_ENVIRONMENT === undefined

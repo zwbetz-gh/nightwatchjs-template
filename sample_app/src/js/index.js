@@ -55,19 +55,21 @@
   }
 
   function addEventListeners() {
+    var eventType = 'keyup';
+
     var number1 = getNumber1El();
     if (number1) {
-      number1.addEventListener('change', calcResult);
+      number1.addEventListener(eventType, calcResult);
     }
 
     var operation = getOperationEl();
     if (operation) {
-      operation.addEventListener('change', calcResult);
+      operation.addEventListener(eventType, calcResult);
     }
 
     var number2 = getNumber2El();
     if (number2) {
-      number2.addEventListener('change', calcResult);
+      number2.addEventListener(eventType, calcResult);
     }
   }
 
