@@ -1,12 +1,12 @@
 {
   "name": "nightwatchjs-template",
+  "version": "1.0.0",
   "description": "NightwatchJS Template",
   "repository": {
     "type": "git",
     "url": "https://github.com/zwbetz-gh/nightwatchjs-template"
   },
   "license": "MIT",
-  "version": "0.1.0",
   "type": "commonjs",
   "scripts": {
     "config": "node src/scripts/config.js",
