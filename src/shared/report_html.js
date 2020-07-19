@@ -39,12 +39,14 @@ const calcTestAssertions = (data) => {
   let total = 0;
   for (const testcase of data.testsuites.testsuite[0].testcase) {
     const assertions = Number.parseInt(testcase.$.assertions, 10);
-    total += assertions;
+    if (!Number.isNaN) {
+      total += assertions;
+    }
   }
   return total;
 };
 
-const calcTestMessages = (data) => {
+const getTestMessages = (data) => {
   const messages = [];
   if (isMoreThanOneTestcase(data)) {
     messages.push(warningThereShouldOnlyBeOneTestcasePerFile);
@@ -271,10 +273,10 @@ const makeTestsTable = (reportData) => {
     <td>${data.testsuites.testsuite[0].$.errors}</td>
     <td>${data.testsuites.testsuite[0].$.failures}</td>
     <td style="${
-      calcTestMessages(data) === warningThereShouldOnlyBeOneTestcasePerFile
+      getTestMessages(data) === warningThereShouldOnlyBeOneTestcasePerFile
         ? 'background-color: #ffeeba;'
         : ''
-    }">${calcTestMessages(data)}</td>
+    }">${getTestMessages(data)}</td>
     <td>${getTestScreenshot(data)}</td>
   </tr>
   `
