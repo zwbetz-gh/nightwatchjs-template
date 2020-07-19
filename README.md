@@ -50,10 +50,6 @@ This repo is a distillation of personal lessons learned, providing a template to
         npm install
 
 1. Copy file `.env.sample` to file `.env`, then edit the values as you wish
-1. Confirm environment variables with
-
-        npm run env
-
 1. Write your page objects
 1. Write your tests
 
@@ -84,7 +80,7 @@ NIGHTWATCH_PARALLEL=false
 # If set to auto, all of your logical cpus will be used.
 NIGHTWATCH_PARALLEL_WORKERS=3
 
-# If you don't want to use the one specified in package.json, set this to the absolute path to your chromedriver, 
+# If you don't want to use the one specified in package.json, set this to the absolute path to your chromedriver,
 # Your Chromedriver version should match your Google Chrome version.
 # NIGHTWATCH_CHROMEDRIVER_PATH=
 ```
