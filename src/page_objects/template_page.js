@@ -1,3 +1,14 @@
+const url = function () {
+  return this.api.launchUrl;
+};
+
+const elements = {
+  number1: '#number-1',
+  operation: '#operation',
+  number2: '#number-2',
+  result: '#result'
+};
+
 const commands = {
   setNumber1: function (val) {
     this.waitForElementVisible('@number1').setValue('@number1', val);
@@ -10,20 +21,15 @@ const commands = {
   setNumber2: function (val) {
     this.waitForElementVisible('@number2').setValue('@number2', val);
     return this;
+  },
+  calculateResult: function (number1, operation, number2) {
+    this.setNumber1(number1).setOperation(operation).setNumber2(number2);
+    return this;
   }
 };
 
-const elements = {
-  number1: '#number-1',
-  operation: '#operation',
-  number2: '#number-2',
-  result: '#result'
-};
-
 module.exports = {
-  url: function () {
-    return this.api.launchUrl;
-  },
-  commands: [commands],
-  elements: elements
+  url: url,
+  elements: elements,
+  commands: [commands]
 };

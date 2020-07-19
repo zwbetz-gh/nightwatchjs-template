@@ -90,7 +90,7 @@ NIGHTWATCH_PARALLEL_WORKERS=3
 
 ### Run All Tests
 
-    npm run test
+    npm test
 
 ### Run a Single Test File
 
@@ -197,4 +197,4 @@ A sample calculator app is provided to run Nightwatch tests against. To use it, 
 
 1. In another terminal, run the Nightwatch tests
 
-        npm run test
+        npm test

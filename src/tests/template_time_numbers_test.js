@@ -17,9 +17,7 @@ module.exports = {
     browser.page
       .template_page()
       .navigate()
-      .setNumber1('5')
-      .setOperation('*')
-      .setNumber2('5')
+      .calculateResult(5, '*', 5)
       .assert.value('@result', '25');
   }
 };
