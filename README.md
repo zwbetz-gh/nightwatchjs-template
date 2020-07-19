@@ -44,6 +44,7 @@ This repo is a distillation of personal lessons learned, providing a template to
 
 ## Setup
 
+1. Fork or download a zip of this repo
 1. Install [NodeJS](https://nodejs.org/en/download/) version 12 or higher
 1. Install dependencies
 
