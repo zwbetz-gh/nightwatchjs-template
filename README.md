@@ -197,7 +197,7 @@ Screenshots will be saved to folder
 
 ## Sample App
 
-A sample calculator app is provided to run Nightwatch tests against. To use it, follow these steps
+A [sample calculator app](https://github.com/zwbetz-gh/sample-calculator-app) is provided to run Nightwatch tests against. To use it, follow these steps
 
 1. In one terminal, start the sample app at <http://localhost:5000>
 
