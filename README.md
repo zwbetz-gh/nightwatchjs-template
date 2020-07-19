@@ -182,7 +182,8 @@ Screenshots will be saved to folder
 
 ## Sample Reports
 
-TODO
+- [nightwatch_report.zip](sample_reports/nightwatch_report.zip)
+- [nightwatch_tags_report.zip](sample_reports/nightwatch_tags_report.zip)
 
 ## Sample App
 
