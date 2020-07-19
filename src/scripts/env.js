@@ -3,6 +3,7 @@ const {makePrettyJson} = require('../shared/shared');
 
 const main = () => {
   const string = makePrettyJson(env.getEnv());
-  console.log(string);};
+  console.log(string);
+};
 
 main();
