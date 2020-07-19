@@ -170,15 +170,14 @@ Screenshots will be saved to folder
 ## Rules
 
 - **ONLY write one testcase per file**. This takes advantage of Nightwatch's parallel mode. It also better organizes tagging and reporting
-- Always return `this` from page object commands so that they can be chained
 - Split page objects into smaller, logical files if they get too big
+- Name source files with snake case
+- Always return `this` from page object commands so that they can be chained
 - Prefer `id`s for element selectors. This may mean asking developers to add `id`s
 - **Avoid** the `pause` command. Instead, use `waitForElementPresent` and `waitForElementVisible`, then pass a higher than default `waitForConditionTimeout`, if needed. For example
 
         // Wait 15s for an element to be visible
         waitForElementVisible('@someElement', 15 * 1000)
-
-- Name source files with snake case
 
 ## Sample Reports
 
