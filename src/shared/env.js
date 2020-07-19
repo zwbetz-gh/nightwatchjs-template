@@ -1,6 +1,5 @@
 const process = require('process');
 const chromedriver = require('chromedriver');
-const {makePrettyJson} = require('./shared');
 require('dotenv').config({path: '.env'});
 
 let env = {};
@@ -62,13 +61,6 @@ const getEnv = () => {
   return env;
 };
 
-const logEnv = () => {
-  setEnv();
-  const string = makePrettyJson(env);
-  console.log(string);
-};
-
 module.exports = {
-  getEnv,
-  logEnv
+  getEnv
 };

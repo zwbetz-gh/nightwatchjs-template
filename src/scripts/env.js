@@ -1,7 +1,8 @@
 const env = require('../shared/env');
+const {makePrettyJson} = require('../shared/shared');
 
 const main = () => {
-  env.logEnv();
-};
+  const string = makePrettyJson(env.getEnv());
+  console.log(string);};
 
 main();

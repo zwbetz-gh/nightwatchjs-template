@@ -1,5 +1,4 @@
 const os = require('os');
-const {makePrettyJson} = require('./shared');
 
 let sys = {};
 
@@ -28,13 +27,6 @@ const getSys = () => {
   return sys;
 };
 
-const logSys = () => {
-  setSys();
-  const string = makePrettyJson(sys);
-  console.log(string);
-};
-
 module.exports = {
-  getSys,
-  logSys
+  getSys
 };
