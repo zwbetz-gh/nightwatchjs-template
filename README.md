@@ -187,4 +187,14 @@ TODO
 
 ## Sample App
 
-TODO
+A sample calculator app is provided to run Nightwatch tests against. To use it, do
+
+1. In one terminal, start the sample app at <http://localhost:5000>
+
+        cd sample_app
+        npm install
+        npm run serve
+
+1. In another terminal, run the Nightwatch tests
+
+        npm run test
