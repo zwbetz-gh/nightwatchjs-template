@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sample App",
   "scripts": {
-    "serve": "serve -l tcp://localhost:5000 src",
+    "serve": "serve src",
     "prettier": "prettier --write src"
   },
   "license": "MIT",
