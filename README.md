@@ -181,8 +181,8 @@ Screenshots will be saved to folder
 
 ## Sample Reports
 
-- [nightwatch_report.zip](sample_reports/nightwatch_report.zip)
-- [nightwatch_tags_report.zip](sample_reports/nightwatch_tags_report.zip)
+- [nightwatch_report.zip](https://github.com/zwbetz-gh/nightwatchjs-template/raw/master/sample_reports/nightwatch_report.zip)
+- [nightwatch_tags_report.zip](https://github.com/zwbetz-gh/nightwatchjs-template/raw/master/sample_reports/nightwatch_tags_report.zip)
 
 ## Sample App
 
