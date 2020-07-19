@@ -6,43 +6,43 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link href="uswds-2.8.0/css/uswds.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-4.5.0.min.css" rel="stylesheet" />
     <title>Sample App</title>
   </head>
   <body>
-    <div class="grid-container">
-      <div class="grid-row grid-gap">
-        <div class="tablet:grid-col">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-sm">
           <h1>Sample App</h1>
         </div>
       </div>
-      <div class="grid-row grid-gap">
-        <div class="tablet:grid-col">
-          <label class="usa-label" for="number-1">
+      <div class="row align-items-center">
+        <div class="col-sm">
+          <label for="number-1">
             Number 1
           </label>
-          <input class="usa-input" id="number-1" />
+          <input class="form-control form-control-lg" id="number-1" />
         </div>
-        <div class="tablet:grid-col">
-          <label class="usa-label" for="operation">Operation</label>
-          <select class="usa-select" id="operation">
+        <div class="col-sm">
+          <label for="operation">Operation</label>
+          <select class="form-control form-control-lg" id="operation">
             <option value="plus">+</option>
             <option value="minus">-</option>
             <option value="times">*</option>
             <option value="divided-by">/</option>
           </select>
         </div>
-        <div class="tablet:grid-col">
-          <label class="usa-label" for="number-2">
+        <div class="col-sm">
+          <label for="number-2">
             Number 2
           </label>
-          <input class="usa-input" id="number-2" />
+          <input class="form-control form-control-lg" id="number-2" />
         </div>
-        <div class="tablet:grid-col">
-          <label class="usa-label" for="result">
+        <div class="col-sm">
+          <label for="result">
             Result
           </label>
-          <input class="usa-input" id="result" disabled />
+          <input class="form-control form-control-lg" id="result" disabled />
         </div>
       </div>
     </div>

@@ -132,6 +132,7 @@ const makeHtmlTemplate = (title, content) => {
     process.cwd(),
     'src',
     'resources',
+    'css',
     'bootstrap-4.5.0.min.css'
   );
   const css = readDataFromFile(cssFilePath);

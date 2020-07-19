@@ -7,30 +7,30 @@
     return val;
   }
 
-  function getNumber1El() {
+  function getNumber1Element() {
     var el = document.getElementById('number-1');
     return el;
   }
 
-  function getOperationEl() {
+  function getOperationElement() {
     var el = document.getElementById('operation');
     return el;
   }
 
-  function getNumber2El() {
+  function getNumber2Element() {
     var el = document.getElementById('number-2');
     return el;
   }
 
-  function getResultEl() {
+  function getResultElement() {
     var el = document.getElementById('result');
     return el;
   }
 
   function calcResult() {
-    var number1Value = convertToInteger(getNumber1El().value);
-    var operationValue = convertToInteger(getOperationEl().value);
-    var number2Value = convertToInteger(getNumber2El().value);
+    var number1Value = convertToInteger(getNumber1Element().value);
+    var operationValue = convertToInteger(getOperationElement().value);
+    var number2Value = convertToInteger(getNumber2Element().value);
 
     var result = null;
 
@@ -50,27 +50,19 @@
       default:
     }
 
-    var resultEl = getResultEl();
-    resultEl.value = result;
+    var resultElement = getResultElement();
+    resultElement.value = result;
   }
 
   function addEventListeners() {
-    var eventType = 'keyup';
+    var number1 = getNumber1Element();
+    number1.addEventListener('keyup', calcResult);
 
-    var number1 = getNumber1El();
-    if (number1) {
-      number1.addEventListener(eventType, calcResult);
-    }
+    var operation = getOperationElement();
+    operation.addEventListener('change', calcResult);
 
-    var operation = getOperationEl();
-    if (operation) {
-      operation.addEventListener(eventType, calcResult);
-    }
-
-    var number2 = getNumber2El();
-    if (number2) {
-      number2.addEventListener(eventType, calcResult);
-    }
+    var number2 = getNumber2Element();
+    number2.addEventListener('keyup', calcResult);
   }
 
   addEventListeners();
