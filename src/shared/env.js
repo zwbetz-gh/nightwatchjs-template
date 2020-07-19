@@ -1,5 +1,6 @@
 const process = require('process');
 const chromedriver = require('chromedriver');
+const geckodriver = require('geckodriver');
 require('dotenv').config({path: '.env'});
 
 let env = {};
@@ -51,6 +52,8 @@ const setEnv = () => {
         ? 'auto'
         : process.env.NIGHTWATCH_PARALLEL_WORKERS
     ),
+    NIGHTWATCH_GECKODRIVER_PATH: process.env.NIGHTWATCH_GECKODRIVER_PATH,
+    NPM_GECKODRIVER_PATH: geckodriver.path,
     NIGHTWATCH_CHROMEDRIVER_PATH: process.env.NIGHTWATCH_CHROMEDRIVER_PATH,
     NPM_CHROMEDRIVER_PATH: chromedriver.path
   };

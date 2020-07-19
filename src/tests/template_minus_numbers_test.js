@@ -17,7 +17,7 @@ module.exports = {
     browser.page
       .template_page()
       .navigate()
-      .calculateResult(5, '-', 5)
+      .calculateResult('5', '-', '5')
       .assert.value('@result', '0');
   }
 };

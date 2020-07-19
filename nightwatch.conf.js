@@ -1,7 +1,15 @@
+const process = require('process');
+const _ = require('lodash');
 const env = require('./src/shared/env');
 const {ONE_SECOND} = require('./src/constants/waits');
 
-const browserNameChrome = 'chrome';
+const localFirefoxArgs = [];
+const headlessFirefoxArgs = [
+  '-headless',
+  `--window-size=${env.getEnv().NIGHTWATCH_HEADLESS_WIDTH},${
+    env.getEnv().NIGHTWATCH_HEADLESS_HEIGHT
+  }`
+];
 
 const localChromeArgs = ['disable-gpu'];
 const headlessChromeArgs = [
@@ -31,6 +39,23 @@ const makeDefaultEnv = () => ({
   }
 });
 
+const makeLocalFirefoxEnv = (args) => ({
+  webdriver: {
+    start_process: true,
+    server_path:
+      env.getEnv().NIGHTWATCH_GECKODRIVER_PATH ||
+      env.getEnv().NPM_GECKODRIVER_PATH,
+    host: 'localhost',
+    port: 4444
+  },
+  desiredCapabilities: {
+    browserName: 'firefox',
+    'mox:firefoxOptions': {
+      args: [...args]
+    }
+  }
+});
+
 const makeLocalChromeEnv = (args) => ({
   webdriver: {
     start_process: true,
@@ -41,7 +66,7 @@ const makeLocalChromeEnv = (args) => ({
     port: 9515
   },
   desiredCapabilities: {
-    browserName: browserNameChrome,
+    browserName: 'chrome',
     'goog:chromeOptions': {
       w3c: false,
       args: [...args]
@@ -54,20 +79,33 @@ const makeTestSettings = () => {
     default: makeDefaultEnv()
   };
   switch (env.getEnv().NIGHTWATCH_ENVIRONMENT) {
-    case 'PLACEHOLDER':
+    case 'LOCAL_FIREFOX_HEADLESS':
+      testSettings.default = _.merge(
+        testSettings.default,
+        makeLocalFirefoxEnv([...localFirefoxArgs, ...headlessFirefoxArgs])
+      );
+      // Even with the -headless arg, firefox does not run in headless mode
+      // unless you set this env var.
+      process.env.MOZ_HEADLESS = '1';
+      break;
+    case 'LOCAL_FIREFOX':
+      testSettings.default = _.merge(
+        testSettings.default,
+        makeLocalFirefoxEnv([...localFirefoxArgs])
+      );
       break;
     case 'LOCAL_CHROME_HEADLESS':
-      testSettings.default = {
-        ...testSettings.default,
-        ...makeLocalChromeEnv([...localChromeArgs, ...headlessChromeArgs])
-      };
+      testSettings.default = _.merge(
+        testSettings.default,
+        makeLocalChromeEnv([...localChromeArgs, ...headlessChromeArgs])
+      );
       break;
     default:
       // LOCAL_CHROME
-      testSettings.default = {
-        ...testSettings.default,
-        ...makeLocalChromeEnv(localChromeArgs)
-      };
+      testSettings.default = _.merge(
+        testSettings.default,
+        makeLocalChromeEnv(localChromeArgs)
+      );
       break;
   }
   return testSettings;
@@ -75,42 +113,50 @@ const makeTestSettings = () => {
 
 // Ref: https://github.com/nightwatchjs/nightwatch/blob/master/lib/settings/defaults.js
 module.exports = {
-  // An object which will be made available on the main test api, throughout the test execution
+  // An object which will be made available on the main test api,
+  // throughout the test execution.
   globals: {
-    // this controls whether to abort the test execution when an assertion failed and skip the rest
-    // it's being used in waitFor commands and expect assertions
+    // This controls whether to abort the test execution when an assertion
+    // failed and skip the rest.
+    // It's being used in waitFor commands and expect assertions.
     abortOnAssertionFailure: true,
 
-    // this will overwrite the default polling interval (currently 500ms) for waitFor commands
-    // and expect assertions that use retry
+    // This will overwrite the default polling interval (currently 500ms) for
+    // waitFor commands and expect assertions that use retry.
     waitForConditionPollInterval: 500,
 
-    // default timeout value in milliseconds for waitFor commands and implicit waitFor value for
-    // expect assertions
-    // default is 5000ms
+    // Default timeout value in milliseconds for waitFor commands and implicit
+    // waitFor value for expect assertions.
     waitForConditionTimeout: 5 * ONE_SECOND,
 
-    // this will cause waitFor commands on elements to throw an error if multiple
-    // elements are found using the given locate strategy and selector
+    // This will cause waitFor commands on elements to throw an error if
+    // multiple elements are found using the given locate strategy
+    // and selector.
     throwOnMultipleElementsReturned: false,
 
-    // By default a warning is printed if multiple elements are found using the given locate strategy
-    // and selector; set this to true to suppress those warnings
+    // By default a warning is printed if multiple elements are found using the
+    // given locate strategy and selector; set this to true to suppress
+    // those warnings.
     suppressWarningsOnMultipleElementsReturned: false,
 
-    // Automatically retrying failed assertions - You can tell Nightwatch to automatically retry failed assertions until a given timeout is reached, before the test runner gives up and fails the test.
+    // Automatically retrying failed assertions.
+    // You can tell Nightwatch to automatically retry failed assertions until
+    // a given timeout is reached, before the test runner gives up and fails
+    // the test.
     retryAssertionTimeout: 5 * ONE_SECOND
   },
 
-  // Location of an external globals module which will be loaded and made available to the test as a
-  // property globals on the main client instance.
+  // Location of an external globals module which will be loaded and made
+  // available to the test as a property globals on the main client instance.
   globals_path: 'globals.js',
 
-  // The location where the JUnit XML report files will be saved. Set this to false if you want to disable XML reporting
+  // The location where the JUnit XML report files will be saved.
+  // Set this to false if you want to disable XML reporting.
   output_folder: `${env.getEnv().NIGHTWATCH_OUTPUT_FOLDER}/report`,
 
-  // An array of folders (excluding subfolders) where your tests are located;
-  // if this is not specified, the test source must be passed as the second argument to the test runner.
+  // An array of folders (excluding subfolders) where your tests are located.
+  // If this is not specified, the test source must be passed as the second
+  // argument to the test runner.
   src_folders: ['src/tests'],
 
   // Location(s) where page object files will be loaded from.
@@ -122,14 +168,18 @@ module.exports = {
   // Location(s) where custom assertions will be loaded from.
   custom_assertions_path: ['src/assertions'],
 
-  // Whether or not to run individual test suites (files) in parallel using a test worker for each.
-  // If set to true, runs the tests in parallel and determines the number of workers automatically.
+  // Whether or not to run individual test suites (files) in parallel using a
+  // test worker for each.
+  // If set to true, runs the tests in parallel and determines the number of
+  // workers automatically.
   test_workers: {
     enabled: env.getEnv().NIGHTWATCH_PARALLEL,
     workers: env.getEnv().NIGHTWATCH_PARALLEL_WORKERS
   },
 
-  // An object in which all the test environments are defined, each overwriting test settings as needed.
-  // A default environment is always required, from which the other environments inherit settings from.
+  // An object in which all the test environments are defined, each overwriting
+  // test settings as needed.
+  // A default environment is always required, from which the other
+  // environments inherit settings from.
   test_settings: makeTestSettings()
 };

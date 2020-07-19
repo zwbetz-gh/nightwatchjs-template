@@ -4,6 +4,7 @@ tests_output/
 .env
 debug.log
 chromedriver.log
+geckodriver.log
 
 # Mac
 .DS_Store
