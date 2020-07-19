@@ -4,7 +4,7 @@ const template_page = require('../page_objects/template_page');
 module.exports = {
   '@disabled': false,
 
-  '@tags': ['COLOR'],
+  '@tags': ['GET_COLOR'],
 
   beforeEach: (browser) => {
     hooks.beforeEach(browser);
