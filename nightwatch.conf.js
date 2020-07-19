@@ -98,14 +98,6 @@ module.exports = {
     // and selector; set this to true to suppress those warnings
     suppressWarningsOnMultipleElementsReturned: false,
 
-    // controls the timeout value for async hooks. Expects the done() callback to be invoked within this time
-    // or an error is thrown
-    asyncHookTimeout: 10 * ONE_SECOND,
-
-    // controls the timeout value for when executing the global async reporter. Expects the done() callback to be invoked within this time
-    // or an error is thrown
-    customReporterCallbackTimeout: 20 * ONE_SECOND,
-
     // Automatically retrying failed assertions - You can tell Nightwatch to automatically retry failed assertions until a given timeout is reached, before the test runner gives up and fails the test.
     retryAssertionTimeout: 5 * ONE_SECOND
   },
