@@ -1,5 +1,4 @@
 const hooks = require('../shared/hooks');
-const keys = require('../constants/keys');
 
 module.exports = {
   '@disabled': false,
