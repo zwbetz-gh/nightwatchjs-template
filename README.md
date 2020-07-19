@@ -79,6 +79,7 @@ NIGHTWATCH_HEADLESS_HEIGHT=1080
 NIGHTWATCH_OUTPUT_FOLDER=tests_output
 
 # Run test files in parallel.
+# Currently only chromedriver supports parallel.
 NIGHTWATCH_PARALLEL=false
 
 # If NIGHTWATCH_PARALLEL is true, specify the number of workers to use.
