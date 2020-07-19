@@ -54,6 +54,9 @@ This repo is a distillation of personal lessons learned, providing a template to
 
         npm run env
 
+1. Write your page objects
+1. Write your tests
+
 ## Environment Variables
 
 ```shell
