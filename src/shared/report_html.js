@@ -49,7 +49,7 @@ const calcTestAssertions = (data) => {
   let total = 0;
   for (const testcase of data.testsuites.testsuite[0].testcase) {
     const assertions = Number.parseInt(testcase.$.assertions, 10);
-    if (!Number.isNaN) {
+    if (!Number.isNaN(assertions)) {
       total += assertions;
     }
   }
