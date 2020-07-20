@@ -1,7 +1,7 @@
 const path = require('path');
 const env = require('./env');
 const sys = require('./sys');
-const {readDataFromFile, makePrettyJson} = require('./shared');
+const {readDataFromFile} = require('./shared');
 
 const warningThereShouldOnlyBeOneTestcasePerFile =
   'WARNING: There should only be one testcase per file';
@@ -11,6 +11,16 @@ const metaTableHeaders = ['Key', 'Value'];
 const metaTableHead = metaTableHeaders
   .map((header) => `<th scope="col">${header}</th>`)
   .join('\n');
+
+const escapeHtml = (unsafe) => {
+  const safe = unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+  return safe;
+};
 
 const isMoreThanOneTestcase = (data) => {
   if (data.testsuites.testsuite[0].testcase.length > 1) {
@@ -55,12 +65,14 @@ const getTestMessages = (data) => {
 
   const failureNode = data.testsuites.testsuite[0].testcase[0].failure;
   if (failureNode) {
-    messages.push(makePrettyJson(failureNode));
+    messages.push(escapeHtml(failureNode[0].$.message));
+    messages.push(escapeHtml(failureNode[0]._));
   }
 
   const errorNode = data.testsuites.testsuite[0].testcase[0].error;
   if (errorNode) {
-    messages.push(makePrettyJson(errorNode));
+    messages.push(escapeHtml(errorNode[0].$.message));
+    messages.push(escapeHtml(errorNode[0]._));
   }
 
   return messages
