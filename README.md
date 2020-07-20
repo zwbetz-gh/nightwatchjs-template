@@ -19,9 +19,8 @@ This repo is a distillation of personal lessons learned, providing a template to
     - Set the output folder
     - Set whether to run in parallel mode
     - If using parallel mode, set how many workers to use
-    - Set ChromeDriver path, if you don't want to one specified in `package.json`
-    - Set GeckoDriver path, if you don't want to one specified in `package.json`
-
+    - If you don't want to use the one specified in `package.json`, set the ChromeDriver path
+    - If you don't want to use the one specified in `package.json`, set the GeckoDriver path
 
 ## Table of Contents
 
