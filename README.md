@@ -4,6 +4,25 @@
 
 This repo is a distillation of personal lessons learned, providing a template to jump start your own end-to-end testing project. It comes with sensible defaults, but you can configure it however you like.
 
+## Highlights
+
+- Sample templates for how to structure your page objects and tests
+- Custom `beforeEach` and `afterEach` hooks to do common operations
+- Built-in WebDriver environments for ChromeDriver, ChromeDriver headless, GeckoDriver, and GeckoDriver headless
+- Custom reporting in JSON, XML, and HTML formats
+    - By default, Nightwatch generates a XML file for each test file. This repo parses them all into a single, sleek report
+    - HTML reports are fully portable, since their CSS is inlined, and their screenshots are Base64 encoded
+- Customize configuration via a `.env` file
+    - Set the Launch URL to use
+    - Set which WebDriver to use
+    - If using WebDriver headless mode, set the browser window width and height
+    - Set the output folder
+    - Set whether to run in parallel mode
+    - If using parallel mode, set how many workers to use
+    - Set ChromeDriver path, if you don't want to one specified in `package.json`
+    - Set GeckoDriver path, if you don't want to one specified in `package.json`
+
+
 ## Table of Contents
 
 <!-- toc -->
@@ -79,7 +98,7 @@ NIGHTWATCH_HEADLESS_HEIGHT=1080
 NIGHTWATCH_OUTPUT_FOLDER=tests_output
 
 # Run test files in parallel.
-# Currently only chromedriver supports parallel.
+# Currently only ChromeDriver supports parallel.
 NIGHTWATCH_PARALLEL=false
 
 # If NIGHTWATCH_PARALLEL is true, specify the number of workers to use.
@@ -87,12 +106,12 @@ NIGHTWATCH_PARALLEL=false
 NIGHTWATCH_PARALLEL_WORKERS=3
 
 # If you don't want to use the one specified in package.json,
-# set this to the absolute path to your geckodriver.
+# set this to the absolute path to your GeckoDriver.
 # NIGHTWATCH_GECKODRIVER_PATH=
 
 # If you don't want to use the one specified in package.json,
-# set this to the absolute path to your chromedriver.
-# Your Chromedriver version should match your Google Chrome version.
+# set this to the absolute path to your ChromeDriver.
+# Your ChromeDriver version should match your Google Chrome version.
 # NIGHTWATCH_CHROMEDRIVER_PATH=
 ```
 
