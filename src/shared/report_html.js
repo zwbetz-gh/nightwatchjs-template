@@ -84,8 +84,8 @@ const getTestScreenshot = (data) => {
       .replace('[[ATTACHMENT|', '')
       .replace(']]', '');
     const base64 = readDataFromFile(filePath, 'base64');
-    const maxWidth = '1200px';
-    const maxHeight = '1200px';
+    const maxWidth = '800px';
+    const maxHeight = '800px';
     screenshot = `
     <img 
       style="max-width: ${maxWidth}; max-height: ${maxHeight};" 
@@ -252,8 +252,7 @@ const makeTestsTable = (reportData) => {
     'Assertions',
     'Errors',
     'Failures',
-    'Messages',
-    'Screenshot'
+    'Messages/Screenshot',
   ];
 
   const testsTableHead = testsTableHeaders
@@ -276,8 +275,11 @@ const makeTestsTable = (reportData) => {
       getTestMessages(data) === warningThereShouldOnlyBeOneTestcasePerFile
         ? 'background-color: #ffeeba;'
         : ''
-    }">${getTestMessages(data)}</td>
-    <td>${getTestScreenshot(data)}</td>
+    }">
+      ${getTestMessages(data)}
+      <br>
+      ${getTestScreenshot(data)}
+    </td>
   </tr>
   `
     )
