@@ -84,11 +84,11 @@ const getTestScreenshot = (data) => {
       .replace('[[ATTACHMENT|', '')
       .replace(']]', '');
     const base64 = readDataFromFile(filePath, 'base64');
-    const maxWidth = '800px';
-    const maxHeight = '800px';
+    const maxWidth = '100%';
+    const height = 'auto';
     screenshot = `
     <img 
-      style="max-width: ${maxWidth}; max-height: ${maxHeight};" 
+      style="max-width: ${maxWidth}; height: ${height};" 
       src="data:image/png;base64,${base64}" 
       alt="screenshot" />
     `;
@@ -252,7 +252,7 @@ const makeTestsTable = (reportData) => {
     'Assertions',
     'Errors',
     'Failures',
-    'Messages/Screenshot',
+    'Messages/Screenshot'
   ];
 
   const testsTableHead = testsTableHeaders
