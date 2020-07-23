@@ -75,12 +75,14 @@ const getTestMessages = (data) => {
     messages.push(escapeHtml(errorNode[0]._));
   }
 
-  return messages
+  const formattedMessages = messages
     .map(
       (message) =>
         `<pre style="white-space: pre-wrap;"><code>${message}</code></pre>`
     )
     .join('\n');
+
+  return formattedMessages;
 };
 
 const getTestScreenshot = (data) => {
@@ -190,6 +192,16 @@ const makeTable = (tableHead, tableBody) => {
   return table;
 };
 
+const makeExpandable = (summary, details) => {
+  const el = `
+  <details>
+    <summary>${summary}</summary>
+    ${details}
+  </details>
+  `;
+  return el;
+};
+
 const makeSystemTable = () => {
   const systemTableBody = () => {
     const rows = [];
@@ -288,9 +300,18 @@ const makeTestsTable = (reportData) => {
         ? 'background-color: #ffeeba;'
         : ''
     }">
-      ${getTestMessages(data)}
-      <br>
-      ${getTestScreenshot(data)}
+    ${
+      getTestMessages(data) === ''
+        ? ''
+        : makeExpandable(
+            'Expand for details',
+            `
+            ${getTestMessages(data)}
+            <br>
+            ${getTestScreenshot(data)}
+            `
+          )
+    }
     </td>
   </tr>
   `
