@@ -6,7 +6,7 @@ require('dotenv').config({path: '.env'});
 let env = {};
 
 const convertToBoolean = (val) => {
-  if (val === 'true') {
+  if (val === 'true' || val === true) {
     return true;
   }
   return false;
