@@ -13,6 +13,9 @@ const metaTableHead = metaTableHeaders
   .join('\n');
 
 const escapeHtml = (unsafe) => {
+  if (!unsafe) {
+    return '';
+  }
   const safe = unsafe
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
