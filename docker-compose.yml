@@ -18,6 +18,7 @@ services:
       - HUB_PORT=4444
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1080
+      - START_XVFB=false
 
   chrome-2:
     image: selenium/node-chrome:3.141.59
@@ -30,6 +31,7 @@ services:
       - HUB_PORT=4444
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1080
+      - START_XVFB=false
 
   chrome-3:
     image: selenium/node-chrome:3.141.59
@@ -42,6 +44,7 @@ services:
       - HUB_PORT=4444
       - SCREEN_WIDTH=1920
       - SCREEN_HEIGHT=1080
+      - START_XVFB=false
 
   nightwatch:
     build:
