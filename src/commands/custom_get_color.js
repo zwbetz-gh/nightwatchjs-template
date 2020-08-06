@@ -20,21 +20,23 @@ const parseRgbToHex = (rgb) => {
 
 const command = function (selector, callback) {
   this.perform(() => {
-    const funcBody = function (scopedSelector) {
-      const element = document.querySelector(scopedSelector);
-      const style = window.getComputedStyle(element, null);
-      const {color} = style;
-      const json = JSON.stringify(color);
-      return json;
-    };
+    this.isVisible(selector, () => {
+      const funcBody = function (scopedSelector) {
+        const element = document.querySelector(scopedSelector);
+        const style = window.getComputedStyle(element, null);
+        const {color} = style;
+        const json = JSON.stringify(color);
+        return json;
+      };
 
-    const funcArgs = [selector];
+      const funcArgs = [selector];
 
-    this.execute(funcBody, funcArgs, (result) => {
-      const rgb = JSON.parse(result.value);
-      const hex = parseRgbToHex(rgb);
-      console.log(`Selector <${selector}> has color <${hex}>`);
-      callback(hex);
+      this.execute(funcBody, funcArgs, (result) => {
+        const rgb = JSON.parse(result.value);
+        const hex = parseRgbToHex(rgb);
+        console.log(`Selector <${selector}> has color <${hex}>`);
+        callback(hex);
+      });
     });
   });
 
