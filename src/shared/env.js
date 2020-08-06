@@ -55,7 +55,10 @@ const setEnv = () => {
     NIGHTWATCH_GECKODRIVER_PATH: process.env.NIGHTWATCH_GECKODRIVER_PATH,
     NPM_GECKODRIVER_PATH: geckodriver.path,
     NIGHTWATCH_CHROMEDRIVER_PATH: process.env.NIGHTWATCH_CHROMEDRIVER_PATH,
-    NPM_CHROMEDRIVER_PATH: chromedriver.path
+    NPM_CHROMEDRIVER_PATH: chromedriver.path,
+    // The following env vars are only used by Selenium Grid
+    HUB_HOST: process.env.HUB_HOST,
+    HUB_PORT: process.env.HUB_PORT
   };
 };
 

@@ -20,6 +20,8 @@ const headlessChromeArgs = [
   'disable-dev-shm-usage'
 ];
 
+const dockerChromeArgs = [];
+
 const makeDefaultEnv = () => ({
   launch_url: env.getEnv().NIGHTWATCH_LAUNCH_URL,
   end_session_on_fail: false,
@@ -74,6 +76,20 @@ const makeLocalChromeEnv = (args) => ({
   }
 });
 
+const makeDockerChromeEnv = (args) => ({
+  selenium: {
+    host: env.getEnv().HUB_HOST,
+    port: env.getEnv().HUB_PORT
+  },
+  desiredCapabilities: {
+    browserName: 'chrome',
+    'goog:chromeOptions': {
+      w3c: false,
+      args: [...args]
+    }
+  }
+});
+
 const makeTestSettings = () => {
   const testSettings = {
     default: makeDefaultEnv()
@@ -98,6 +114,12 @@ const makeTestSettings = () => {
       testSettings.default = _.merge(
         testSettings.default,
         makeLocalChromeEnv([...localChromeArgs, ...headlessChromeArgs])
+      );
+      break;
+    case 'DOCKER_CHROME_HEADLESS':
+      testSettings.default = _.merge(
+        testSettings.default,
+        makeDockerChromeEnv([...dockerChromeArgs, ...headlessChromeArgs])
       );
       break;
     default:

@@ -1,0 +1,68 @@
+version: "3"
+services:
+
+  selenium-hub:
+    image: selenium/hub:3.141.59
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+
+  chrome-1:
+    image: selenium/node-chrome:3.141.59
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  chrome-2:
+    image: selenium/node-chrome:3.141.59
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  chrome-3:
+    image: selenium/node-chrome:3.141.59
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1080
+
+  nightwatch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    depends_on:
+      - chrome-1
+      - sample-app
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+      - NIGHTWATCH_LAUNCH_URL=http://sample-app:5000
+      - NIGHTWATCH_ENVIRONMENT=DOCKER_CHROME_HEADLESS
+      - NIGHTWATCH_PARALLEL=true
+      - NIGHTWATCH_PARALLEL_WORKERS=3
+
+  sample-app:
+    build:
+      context: ./sample_app
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - "5000:5000"

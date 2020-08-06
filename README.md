@@ -53,6 +53,7 @@ This repo is a distillation of personal lessons learned, providing a template to
 - [Rules](#rules)
 - [Sample Reports](#sample-reports)
 - [Sample App](#sample-app)
+- [Run Selenium Grid with Docker Compose](#run-selenium-grid-with-docker-compose)
 
 <!-- tocstop -->
 
@@ -83,6 +84,7 @@ NIGHTWATCH_LAUNCH_URL=http://localhost:5000
 # LOCAL_FIREFOX_HEADLESS
 # LOCAL_CHROME
 # LOCAL_CHROME_HEADLESS
+# DOCKER_CHROME_HEADLESS
 NIGHTWATCH_ENVIRONMENT=LOCAL_CHROME
 
 # If NIGHTWATCH_ENVIRONMENT is a headless value,
@@ -226,3 +228,23 @@ A [sample calculator app](https://github.com/zwbetz-gh/sample-calculator-app) is
 1. In another terminal, run the Nightwatch tests
 
         npm test
+
+## Run Selenium Grid with Docker Compose
+
+1. Pull images
+
+        docker-compose pull
+
+1. Build services
+
+        docker-compose build
+
+1. Up services
+
+        docker-compose up -d
+
+1. Confirm selenium hub and nodes are up by navigating to http://localhost:4444/grid/console
+1. Confirm sample app is up by navigating to http://localhost:5000
+1. Run tests
+
+        docker-compose run --rm nightwatch npm test
