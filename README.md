@@ -19,6 +19,7 @@ This repo is a distillation of personal lessons learned, providing a template to
     - Set the output folder
     - Set whether to run in parallel mode
     - If using parallel mode, set how many workers to use
+    - Set extra WebDriver args
     - If you don't want to use the one specified in `package.json`, set the ChromeDriver path
     - If you don't want to use the one specified in `package.json`, set the GeckoDriver path
 
@@ -216,6 +217,13 @@ Screenshots will be saved to folder
 
         // Wait 15s for an element to be visible
         waitForElementVisible('@someElement', 15 * 1000)
+
+        // Or, wait 15s for a condition to be true
+        // For example, wait for element 'h1' text to equal 'Example Domain'
+        browser.expect
+          .element('h1')
+          .text.to.equal('Example Domain')
+          .before(15 * 1000);
 
 ## Sample Reports
 
