@@ -20,6 +20,7 @@ const getTests = (filePaths) => {
     const relativeFilePath = `src${req.replace('..', '')}`;
     const test = {
       relativeFilePath,
+      disabled: module['@disabled'],
       tags: module['@tags']
     };
     tests.push(test);
@@ -82,7 +83,7 @@ const makeStatsTable = (reportData) => {
 };
 
 const makeTestToTagsTable = (reportData) => {
-  const testToTagsTableHeaders = ['Test', 'Tags'];
+  const testToTagsTableHeaders = ['Test', 'Disabled', 'Tags'];
 
   const testToTagsTableHead = testToTagsTableHeaders
     .map((header) => `<th scope="col">${header}</th>`)
@@ -93,6 +94,7 @@ const makeTestToTagsTable = (reportData) => {
       (test) => `
   <tr>
     <th scope="row">${test.relativeFilePath}</th>
+    <td>${test.disabled}</td>
     <td style="white-space: pre;">${test.tags.join('\n')}</td>
   </tr>
   `
