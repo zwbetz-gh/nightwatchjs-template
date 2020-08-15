@@ -216,7 +216,7 @@ Screenshots will be saved to folder
 - **Avoid** the `pause` command. Instead, use `waitForElementPresent` and `waitForElementVisible`, then pass a higher than default `waitForConditionTimeout`, if needed. For example
 
         // Wait 15s for an element to be visible
-        waitForElementVisible('@someElement', 15 * 1000)
+        browser.waitForElementVisible('@someElement', 15 * 1000)
 
         // Or, wait 15s for a condition to be true
         // For example, wait for element 'h1' text to equal 'Example Domain'
