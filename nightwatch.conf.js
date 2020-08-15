@@ -22,6 +22,22 @@ const headlessChromeArgs = [
 
 const dockerChromeArgs = [];
 
+const getExtraFirefoxArgs = () => {
+  if (!env.getEnv().NIGHTWATCH_GECKODRIVER_ARGS) {
+    return [];
+  }
+  const args = env.getEnv().NIGHTWATCH_GECKODRIVER_ARGS.split(',');
+  return args;
+};
+
+const getExtraChromeArgs = () => {
+  if (!env.getEnv().NIGHTWATCH_CHROMEDRIVER_ARGS) {
+    return [];
+  }
+  const args = env.getEnv().NIGHTWATCH_CHROMEDRIVER_ARGS.split(',');
+  return args;
+};
+
 const makeDefaultEnv = () => ({
   launch_url: env.getEnv().NIGHTWATCH_LAUNCH_URL,
   end_session_on_fail: false,
@@ -53,7 +69,7 @@ const makeLocalFirefoxEnv = (args) => ({
   desiredCapabilities: {
     browserName: 'firefox',
     'mox:firefoxOptions': {
-      args: [...args]
+      args: [...args, ...getExtraFirefoxArgs()]
     }
   }
 });
@@ -71,7 +87,7 @@ const makeLocalChromeEnv = (args) => ({
     browserName: 'chrome',
     'goog:chromeOptions': {
       w3c: false,
-      args: [...args]
+      args: [...args, ...getExtraChromeArgs()]
     }
   }
 });
@@ -85,7 +101,7 @@ const makeDockerChromeEnv = (args) => ({
     browserName: 'chrome',
     'goog:chromeOptions': {
       w3c: false,
-      args: [...args]
+      args: [...args, ...getExtraChromeArgs()]
     }
   }
 });

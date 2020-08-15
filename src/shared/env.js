@@ -52,8 +52,10 @@ const setEnv = () => {
         ? 'auto'
         : process.env.NIGHTWATCH_PARALLEL_WORKERS
     ),
+    NIGHTWATCH_GECKODRIVER_ARGS: process.env.NIGHTWATCH_GECKODRIVER_ARGS,
     NIGHTWATCH_GECKODRIVER_PATH: process.env.NIGHTWATCH_GECKODRIVER_PATH,
     NPM_GECKODRIVER_PATH: geckodriver.path,
+    NIGHTWATCH_CHROMEDRIVER_ARGS: process.env.NIGHTWATCH_CHROMEDRIVER_ARGS,
     NIGHTWATCH_CHROMEDRIVER_PATH: process.env.NIGHTWATCH_CHROMEDRIVER_PATH,
     NPM_CHROMEDRIVER_PATH: chromedriver.path,
     // The following env vars are only used by Selenium Grid

@@ -18,6 +18,8 @@ module.exports = {
       .template_page()
       .navigate()
       .calculateResult('5', '+', '5')
-      .assert.value('@result', '1');
+      .expect.element('@result')
+      .value.to.equal('1')
+      .before(100);
   }
 };
