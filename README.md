@@ -20,8 +20,7 @@ This repo is a distillation of personal lessons learned, providing a template to
     - Set whether to run in parallel mode
     - If using parallel mode, set how many workers to use
     - Set extra WebDriver args
-    - If you don't want to use the one specified in `package.json`, set the ChromeDriver path
-    - If you don't want to use the one specified in `package.json`, set the GeckoDriver path
+    - If you don't want to use the one specified in `package.json`, set the GeckoDriver or ChromeDriver path
 
 ## Table of Contents
 
