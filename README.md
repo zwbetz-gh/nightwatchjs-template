@@ -231,7 +231,7 @@ Screenshots will be saved to folder
 
 ## Sample App
 
-A [sample calculator app](https://github.com/zwbetz-gh/sample-calculator-app) is provided to run Nightwatch tests against. To use it, follow these steps. 
+A [sample calculator app](https://github.com/zwbetz-gh/sample-calculator-app) is provided to run Nightwatch tests against. To use it, follow these steps.
 
 **Or**, just set `NIGHTWATCH_LAUNCH_URL=https://sample-calculator-app.netlify.app` in your `.env` file
 
