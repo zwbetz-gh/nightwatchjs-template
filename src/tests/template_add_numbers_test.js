@@ -13,7 +13,7 @@ module.exports = {
     hooks.afterEach(browser);
   },
 
-  'Add numbers': (browser) => {
+  'add numbers': (browser) => {
     browser.page
       .template_page()
       .navigate()

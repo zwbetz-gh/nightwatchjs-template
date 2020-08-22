@@ -14,7 +14,7 @@ module.exports = {
     hooks.afterEach(browser);
   },
 
-  'Clear value': (browser) => {
+  'clear value': (browser) => {
     browser.page
       .template_page()
       .navigate()

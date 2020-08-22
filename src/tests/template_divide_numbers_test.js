@@ -13,7 +13,7 @@ module.exports = {
     hooks.afterEach(browser);
   },
 
-  'Divide numbers': (browser) => {
+  'divide numbers': (browser) => {
     browser.page
       .template_page()
       .navigate()

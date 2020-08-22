@@ -14,7 +14,7 @@ module.exports = {
     hooks.afterEach(browser);
   },
 
-  'Get color': (browser) => {
+  'get color': (browser) => {
     browser.page
       .template_page()
       .navigate()

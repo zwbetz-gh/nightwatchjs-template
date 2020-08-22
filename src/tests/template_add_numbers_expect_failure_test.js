@@ -13,7 +13,7 @@ module.exports = {
     hooks.afterEach(browser);
   },
 
-  'Add numbers and expect failure': (browser) => {
+  'add numbers and expect failure': (browser) => {
     browser.page
       .template_page()
       .navigate()

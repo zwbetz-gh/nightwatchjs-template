@@ -13,7 +13,7 @@ module.exports = {
     hooks.afterEach(browser);
   },
 
-  'Minus numbers': (browser) => {
+  'minus numbers': (browser) => {
     browser.page
       .template_page()
       .navigate()
