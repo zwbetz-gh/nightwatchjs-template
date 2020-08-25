@@ -30,6 +30,12 @@ module.exports = {
 
     browser.assert.containsText('h1', 'Sample');
 
+    browser.getText('h1', (result) => {
+      const actual = result.value;
+      const expected = 'Sample Calculator App';
+      browser.assert.equal(actual, expected);
+    });
+
     browser.page
       .template_page()
       .assert.cssClassPresent('@number1', ['form-control', 'form-control-lg']);
