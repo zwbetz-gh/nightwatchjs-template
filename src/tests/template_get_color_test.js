@@ -20,7 +20,7 @@ module.exports = {
       .navigate()
       .custom_get_color(template_page.elements.number1, (actualColor) => {
         const expectedColor = '#495057';
-        browser.assert.equal(actualColor, expectedColor);
+        browser.assert.strictEqual(actualColor, expectedColor);
       });
   }
 };

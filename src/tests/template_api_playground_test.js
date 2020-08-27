@@ -33,7 +33,7 @@ module.exports = {
     browser.getText('h1', (result) => {
       const actual = result.value;
       const expected = 'Sample Calculator App';
-      browser.assert.equal(actual, expected);
+      browser.assert.strictEqual(actual, expected);
     });
 
     browser.page
