@@ -13,7 +13,7 @@ module.exports = {
     hooks.afterEach(browser);
   },
 
-  'api playground': (browser) => {
+  'api playground for assert': (browser) => {
     browser.page.template_page().navigate();
 
     browser.page
