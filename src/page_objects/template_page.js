@@ -10,14 +10,29 @@ const elements = {
 };
 
 const commands = {
+  clickNumber1: function () {
+    this.waitForElementVisible(elements.number1);
+    this.click(elements.number1);
+    return this;
+  },
   setNumber1: function (val) {
     this.waitForElementVisible(elements.number1);
     this.setValue(elements.number1, val);
     return this;
   },
+  clickOperation: function () {
+    this.waitForElementVisible(elements.operation);
+    this.click(elements.operation);
+    return this;
+  },
   setOperation: function (val) {
     this.waitForElementVisible(elements.operation);
     this.setValue(elements.operation, val);
+    return this;
+  },
+  clickNumber2: function () {
+    this.waitForElementVisible(elements.number2);
+    this.customClick(elements.number2);
     return this;
   },
   setNumber2: function (val) {
