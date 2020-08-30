@@ -1,5 +1,5 @@
-const componentToHex = (c) => {
-  const hex = parseInt(c, 10).toString(16).toUpperCase();
+const componentToHex = (component) => {
+  const hex = parseInt(component, 10).toString(16).toUpperCase();
   if (hex.length === 1) {
     return `0${hex}`;
   }
@@ -15,28 +15,28 @@ const parseRgbToHex = (rgb) => {
   const r = components[0];
   const g = components[1];
   const b = components[2];
-  return rgbToHex(r, g, b);
+  const hex = rgbToHex(r, g, b);
+  return hex;
 };
 
-const command = function (selector, callback) {
+const command = function (selector, callback, cssProperty = 'color') {
   this.perform(() => {
-    this.isVisible(selector, () => {
-      const funcBody = function (scopedSelector) {
-        const element = document.querySelector(scopedSelector);
-        const style = window.getComputedStyle(element, null);
-        const {color} = style;
-        const json = JSON.stringify(color);
-        return json;
-      };
+    const funcBody = function (scopedSelector, scopedCssProperty) {
+      const element = document.querySelector(scopedSelector);
+      const style = window.getComputedStyle(element, null);
+      const json = JSON.stringify(style[scopedCssProperty]);
+      return json;
+    };
 
-      const funcArgs = [selector];
+    const funcArgs = [selector, cssProperty];
 
-      this.execute(funcBody, funcArgs, (result) => {
-        const rgb = JSON.parse(result.value);
-        const hex = parseRgbToHex(rgb);
-        console.log(`Selector <${selector}> has color <${hex}>`);
-        callback(hex);
-      });
+    this.waitForElementVisible(selector);
+
+    this.execute(funcBody, funcArgs, (result) => {
+      const rgb = JSON.parse(result.value);
+      const hex = parseRgbToHex(rgb);
+      console.log(`Selector <${selector}> has ${cssProperty} <${hex}>`);
+      callback(hex);
     });
   });
 

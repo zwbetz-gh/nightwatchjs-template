@@ -15,12 +15,29 @@ module.exports = {
   },
 
   'get color': (browser) => {
-    browser.page
-      .template_page()
-      .navigate()
-      .custom_get_color(template_page.elements.number1, (actualColor) => {
+    browser.page.template_page().navigate();
+
+    browser.custom_get_color(template_page.elements.number1, (actualColor) => {
+      const expectedColor = '#495057';
+      browser.assert.strictEqual(actualColor, expectedColor);
+    });
+
+    browser.custom_get_color(
+      template_page.elements.number1,
+      (actualColor) => {
         const expectedColor = '#495057';
         browser.assert.strictEqual(actualColor, expectedColor);
-      });
+      },
+      'color'
+    );
+
+    browser.custom_get_color(
+      template_page.elements.number1,
+      (actualColor) => {
+        const expectedColor = '#FFFFFF';
+        browser.assert.strictEqual(actualColor, expectedColor);
+      },
+      'backgroundColor'
+    );
   }
 };
