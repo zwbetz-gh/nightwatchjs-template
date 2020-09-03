@@ -1,6 +1,8 @@
 const hooks = require('../shared/hooks');
 const {makePrettyJson} = require('../shared/shared');
 
+const separator = () => console.log('---');
+
 module.exports = {
   '@disabled': false,
 
@@ -26,7 +28,7 @@ module.exports = {
       console.log(
         `getAttribute ${element} ${attribute} ${makePrettyJson(result.value)}`
       );
-      console.log('---');
+      separator();
     });
 
     browser.page
@@ -37,7 +39,7 @@ module.exports = {
             result.value
           )}`
         );
-        console.log('---');
+        separator();
       });
 
     browser.page
@@ -48,54 +50,80 @@ module.exports = {
             result.value
           )}`
         );
-        console.log('---');
+        separator();
       });
 
     browser.page.template_page().getElementSize(element, (result) => {
       console.log(`getElementSize ${element} ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
     });
 
     browser.page.template_page().getTagName(element, (result) => {
       console.log(`getTagName ${element} ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
     });
 
     browser.page.template_page().getText(element, (result) => {
       console.log(`getText ${element} ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
     });
 
     browser.page.template_page().getValue(element, (result) => {
       console.log(`getValue ${element} ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
     });
 
     browser.page.template_page().isVisible(element, (result) => {
       console.log(`isVisible ${element} ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
     });
 
     browser.page.template_page().getLocation(element, (result) => {
       console.log(`getLocation ${element} ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
     });
 
     browser.page.template_page().getLocationInView(element, (result) => {
       console.log(
         `getLocationInView ${element} ${makePrettyJson(result.value)}`
       );
-      console.log('---');
+      separator();
     });
 
     browser.url((result) => {
       console.log(`url ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
     });
 
     browser.title((result) => {
       console.log(`title ${makePrettyJson(result.value)}`);
-      console.log('---');
+      separator();
+    });
+
+    browser.execute(
+      function () {
+        console.log('log');
+        console.info('info');
+        console.warn('warn');
+        console.error('error');
+        console.debug('debug');
+        console.trace('trace');
+      },
+      [],
+      () => {
+        console.log('execute');
+        separator();
+      }
+    );
+
+    browser.custom_get_logs('browser', separator);
+
+    browser.custom_get_logs('driver', separator);
+
+    browser.assert.strictEqual(1, 1);
+
+    browser.perform(() => {
+      separator();
     });
   }
 };
