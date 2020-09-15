@@ -1,8 +1,10 @@
 /**
  * Adapted from https://github.com/ahmadnassri/nightwatch-accessibility/blob/master/assertions/accessibility.js
  */
+const chalk = require('chalk');
+const {makePrettyJson} = require('../shared/shared');
 
-const script = function (context, options, done) {
+const scriptBody = function (context, options, done) {
   if (!window.axe) {
     done({error: 'aXe not found. Make sure it has been injected'});
   }
@@ -45,29 +47,52 @@ const command = function (context = 'html') {
         return;
       }
 
-      if (options.verbose) {
-        for (const pass of result.passes) {
-          this.assert.ok(true, pass.help);
+      const handlePasses = () => {
+        if (options.verbose) {
+          for (const pass of result.passes) {
+            this.assert.ok(true, pass.help);
+          }
         }
-      }
 
-      if (result.passes.length > 0) {
-        this.assert.ok(true, `${result.passes.length} aXe test(s) passed`);
-      }
+        if (result.passes.length > 0) {
+          this.assert.ok(true, `${result.passes.length} aXe test(s) passed`);
+        }
+      };
 
-      for (const violation of result.violations) {
-        let message = `Message: ${violation.help}`;
-        message += `\nElement: ${violation.nodes[0].html}`;
-        message += `\nHelp URL: ${violation.helpUrl}`;
+      const handleFails = () => {
+        const fails = [];
 
-        // (node:46241) [DEP0094] DeprecationWarning: assert.fail() with more
-        // than one argument is deprecated. Please use assert.strictEqual()
-        // instead or only pass a message.
-        // ^ The above deprecation warning will show when passing 3 args to
-        // assert.fail. We must accept this warning, because Nightwatch
-        // will not log the failure message if only 1 arg is passed.
-        this.assert.fail(message, '', '');
-      }
+        for (let i = 0; i < result.violations.length; i++) {
+          const fail = {
+            message: result.violations[i].help,
+            element: result.violations[i].nodes[0].html,
+            helpUrl: result.violations[i].helpUrl
+          };
+          fails.push(fail);
+
+          console.log(chalk.red(`Failure ${i + 1}`));
+          console.log(chalk.red(makePrettyJson(fail)));
+        }
+
+        if (result.violations.length > 0) {
+          /**
+           * (node:46241) [DEP0094] DeprecationWarning: assert.fail() with more
+           * than one argument is deprecated. Please use assert.strictEqual()
+           * instead or only pass a message.
+           *
+           * ^ The above deprecation warning will show when passing 3 args to
+           * assert.fail. We must accept this warning, because Nightwatch
+           * will not log the failure message if only 1 arg is passed.
+           */
+
+          let message = `${result.violations.length} aXe test(s) failed`;
+          message += `\n${makePrettyJson(fails)}`;
+          this.assert.fail(message, '', '');
+        }
+      };
+
+      handlePasses();
+      handleFails();
     };
 
     this.custom_accessibility_init();
@@ -76,7 +101,7 @@ const command = function (context = 'html') {
 
     this.timeoutsAsyncScript(options.timeout || 500);
 
-    this.executeAsync(script, scriptArgs, callback);
+    this.executeAsync(scriptBody, scriptArgs, callback);
   });
 
   return this;

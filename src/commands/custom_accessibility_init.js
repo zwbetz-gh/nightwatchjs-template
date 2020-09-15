@@ -11,7 +11,7 @@ const source = fs.readFileSync(
   'utf8'
 );
 
-const script = function (src) {
+const scriptBody = function (src) {
   const elementId = 'nightwatch-accessibility';
   // ensure to inject only once!
   if (!document.querySelector(`#${elementId}`)) {
@@ -30,7 +30,7 @@ const command = function () {
       console.log('aXe script injected');
     };
 
-    this.execute(script, scriptArgs, callback);
+    this.execute(scriptBody, scriptArgs, callback);
   });
 
   return this;
