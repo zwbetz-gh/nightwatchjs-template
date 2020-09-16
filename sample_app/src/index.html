@@ -10,50 +10,52 @@
     <title>Sample Calculator App</title>
   </head>
   <body>
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-sm">
-          <div class="jumbotron">
-            <h1 class="display-4">Sample Calculator App</h1>
-            <p class="lead">
-              A sample calculator app.
-              <a href="https://github.com/zwbetz-gh/sample-calculator-app"
-                >Source</a
-              >
-            </p>
+    <main>
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-sm">
+            <div class="jumbotron">
+              <h1 class="display-4">Sample Calculator App</h1>
+              <p class="lead">
+                A sample calculator app.
+                <a href="https://github.com/zwbetz-gh/sample-calculator-app"
+                  >Source</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-sm">
+            <label for="number-1">
+              Number 1
+            </label>
+            <input class="form-control form-control-lg" id="number-1" />
+          </div>
+          <div class="col-sm">
+            <label for="operation">Operation</label>
+            <select class="form-control form-control-lg" id="operation">
+              <option value="plus">+</option>
+              <option value="minus">-</option>
+              <option value="times">*</option>
+              <option value="divided-by">/</option>
+            </select>
+          </div>
+          <div class="col-sm">
+            <label for="number-2">
+              Number 2
+            </label>
+            <input class="form-control form-control-lg" id="number-2" />
+          </div>
+          <div class="col-sm">
+            <label for="result">
+              Result
+            </label>
+            <input class="form-control form-control-lg" id="result" disabled />
           </div>
         </div>
       </div>
-      <div class="row align-items-center">
-        <div class="col-sm">
-          <label for="number-1">
-            Number 1
-          </label>
-          <input class="form-control form-control-lg" id="number-1" />
-        </div>
-        <div class="col-sm">
-          <label for="operation">Operation</label>
-          <select class="form-control form-control-lg" id="operation">
-            <option value="plus">+</option>
-            <option value="minus">-</option>
-            <option value="times">*</option>
-            <option value="divided-by">/</option>
-          </select>
-        </div>
-        <div class="col-sm">
-          <label for="number-2">
-            Number 2
-          </label>
-          <input class="form-control form-control-lg" id="number-2" />
-        </div>
-        <div class="col-sm">
-          <label for="result">
-            Result
-          </label>
-          <input class="form-control form-control-lg" id="result" disabled />
-        </div>
-      </div>
-    </div>
+    </main>
     <script src="js/index.js"></script>
   </body>
 </html>
