@@ -13,7 +13,7 @@ This repo is a distillation of personal lessons learned, providing a template to
     - By default, Nightwatch generates a XML file for each test file. This repo parses them all into a single, sleek report
     - HTML reports are fully portable, since their CSS is inlined, and their screenshots are Base64 encoded
 - Custom commands
-    - Init and assert accessibility via aXe
+    - Assert accessibility via [axe](https://github.com/dequelabs/axe-core)
     - Clear element value via BACK_SPACE keys
     - Get element hex color
     - Get browser console logs
