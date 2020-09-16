@@ -23,12 +23,24 @@
     "toc": "markdown-toc -i README.md",
     "prettier": "prettier --write src"
   },
+  "lint-staged": {
+    "*.js": [
+      "npm run prettier"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "axe-core": "^4.0.1",
     "chalk": "^4.1.0",
     "chromedriver": "^85.0.0",
     "dotenv": "^8.2.0",
     "geckodriver": "^1.20.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
     "lodash": "^4.17.20",
     "markdown-toc": "^1.2.0",
     "nightwatch": "^1.4.2",
