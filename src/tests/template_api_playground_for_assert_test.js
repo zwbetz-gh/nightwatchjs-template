@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const env = require('../shared/env');
 
 module.exports = {
   '@disabled': false,
@@ -44,11 +45,21 @@ module.exports = {
       .template_page()
       .assert.cssProperty('@number1', 'display', 'block');
 
-    browser.page.template_page().assert.cssProperty(
-      '@number1',
-      'color',
-      'rgba(73, 80, 87, 1)' // #495057
-    );
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
+      browser.page.template_page().assert.cssProperty(
+        '@number1',
+        'color',
+        'rgba(73, 80, 87, 1)' // #495057
+      );
+    }
+
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('FIREFOX')) {
+      browser.page.template_page().assert.cssProperty(
+        '@number1',
+        'color',
+        'rgb(73, 80, 87)' // #495057
+      );
+    }
 
     browser.page
       .template_page()

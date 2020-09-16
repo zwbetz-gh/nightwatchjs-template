@@ -1,5 +1,6 @@
 const hooks = require('../shared/hooks');
 const {makePrettyJson} = require('../shared/shared');
+const env = require('../shared/env');
 
 const separator = () => console.log('---');
 
@@ -83,12 +84,14 @@ module.exports = {
       separator();
     });
 
-    browser.page.template_page().getLocationInView(element, (result) => {
-      console.log(
-        `getLocationInView ${element} ${makePrettyJson(result.value)}`
-      );
-      separator();
-    });
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
+      browser.page.template_page().getLocationInView(element, (result) => {
+        console.log(
+          `getLocationInView ${element} ${makePrettyJson(result.value)}`
+        );
+        separator();
+      });
+    }
 
     browser.url((result) => {
       console.log(`url ${makePrettyJson(result.value)}`);
@@ -100,25 +103,27 @@ module.exports = {
       separator();
     });
 
-    browser.execute(
-      function () {
-        console.log('log');
-        console.info('info');
-        console.warn('warn');
-        console.error('error');
-        console.debug('debug');
-        console.trace('trace');
-      },
-      [],
-      () => {
-        console.log('execute');
-        separator();
-      }
-    );
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
+      browser.execute(
+        function () {
+          console.log('log');
+          console.info('info');
+          console.warn('warn');
+          console.error('error');
+          console.debug('debug');
+          console.trace('trace');
+        },
+        [],
+        () => {
+          console.log('execute');
+          separator();
+        }
+      );
 
-    browser.custom_get_logs('browser', separator);
+      browser.custom_get_logs('browser', separator);
 
-    browser.custom_get_logs('driver', separator);
+      browser.custom_get_logs('driver', separator);
+    }
 
     browser.assert.strictEqual(1, 1);
 

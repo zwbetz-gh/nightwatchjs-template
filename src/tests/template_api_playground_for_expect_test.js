@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const env = require('../shared/env');
 
 module.exports = {
   '@disabled': false,
@@ -18,11 +19,13 @@ module.exports = {
 
     browser.page.template_page().expect.element('@number1').to.be.an('input');
 
-    browser.page.template_page().expect.element('@number1').to.not.be.active;
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
+      browser.page.template_page().expect.element('@number1').to.not.be.active;
 
-    browser.page.template_page().clickNumber1();
+      browser.page.template_page().clickNumber1();
 
-    browser.page.template_page().expect.element('@number1').to.be.active;
+      browser.page.template_page().expect.element('@number1').to.be.active;
+    }
 
     browser.page
       .template_page()
@@ -36,11 +39,21 @@ module.exports = {
       .to.have.css('display')
       .which.equals('block');
 
-    browser.page
-      .template_page()
-      .expect.element('@number1')
-      .to.have.css('color')
-      .which.equals('rgba(73, 80, 87, 1)'); // #495057
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
+      browser.page
+        .template_page()
+        .expect.element('@number1')
+        .to.have.css('color')
+        .which.equals('rgba(73, 80, 87, 1)'); // #495057
+    }
+
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('FIREFOX')) {
+      browser.page
+        .template_page()
+        .expect.element('@number1')
+        .to.have.css('color')
+        .which.equals('rgb(73, 80, 87)'); // #495057
+    }
 
     browser.page.template_page().expect.element('@number1').to.be.enabled;
 
@@ -53,11 +66,19 @@ module.exports = {
       .expect.element('h1')
       .text.to.equal('Sample Calculator App');
 
-    browser.page.template_page().expect.element('@number1').value.to.equal('');
+    if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
+      browser.page
+        .template_page()
+        .expect.element('@number1')
+        .value.to.equal('');
 
-    browser.page.template_page().setNumber1('1');
+      browser.page.template_page().setNumber1('1');
 
-    browser.page.template_page().expect.element('@number1').value.to.equal('1');
+      browser.page
+        .template_page()
+        .expect.element('@number1')
+        .value.to.equal('1');
+    }
 
     browser.page.template_page().expect.element('@number1').to.be.visible;
 

@@ -3,6 +3,7 @@ const keys = require('../constants/keys');
 const command = function (selector) {
   this.perform(() => {
     this.waitForElementVisible(selector);
+    this.clearValue(selector);
     this.click(selector);
     this.getValue(selector, (result) => {
       const {length} = result.value;
