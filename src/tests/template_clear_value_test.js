@@ -1,5 +1,4 @@
 const hooks = require('../shared/hooks');
-const template_page = require('../page_objects/template_page');
 
 module.exports = {
   '@disabled': false,
@@ -19,7 +18,8 @@ module.exports = {
       .template_page()
       .navigate()
       .setNumber1('123')
-      .custom_clear_value(template_page.elements.number1)
-      .assert.value(template_page.elements.number1, '');
+      .assert.value('@number1', '123')
+      .custom_clear_value('@number1')
+      .assert.value('@number1', '');
   }
 };
