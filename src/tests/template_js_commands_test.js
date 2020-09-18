@@ -22,6 +22,7 @@ module.exports = {
       // custom_js_click
       browser.page.template_page().expect.element('@number1').to.not.be.active;
 
+      browser.custom_js_click('#does-not-exist');
       browser.custom_js_click(template_page.elements.number1);
 
       browser.page.template_page().expect.element('@number1').to.be.active;
@@ -32,6 +33,7 @@ module.exports = {
         .expect.element('@number1')
         .value.to.equal('');
 
+      browser.custom_js_set_value('#does-not-exist', '123');
       browser.custom_js_set_value(template_page.elements.number1, '123');
 
       browser.page

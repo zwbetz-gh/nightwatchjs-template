@@ -19,6 +19,12 @@ const customClearValue = (thisRef, selector) => {
   });
 };
 
+/**
+ * Clear the value of an element
+ *
+ * @param {string} selector - The CSS selector
+ * @param {number} numberOfTimesToRun - An optional number of times to run
+ */
 const command = function (selector, numberOfTimesToRun = 2) {
   this.perform(() => {
     for (let i = 0; i < numberOfTimesToRun; i++) {

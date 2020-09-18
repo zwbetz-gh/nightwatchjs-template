@@ -22,6 +22,9 @@ const scriptBody = function (src) {
   }
 };
 
+/**
+ * Inject axe-core into the page
+ */
 const command = function () {
   this.perform(() => {
     const scriptArgs = [source];

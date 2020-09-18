@@ -35,7 +35,7 @@ const command = function (selector, callback, cssProperty = 'color') {
     this.execute(funcBody, funcArgs, (result) => {
       const rgb = JSON.parse(result.value);
       const hex = parseRgbToHex(rgb);
-      console.log(`Selector <${selector}> has ${cssProperty} <${hex}>`);
+      console.log(`Selector ${selector} has ${cssProperty} ${hex}`);
       callback(hex);
     });
   });

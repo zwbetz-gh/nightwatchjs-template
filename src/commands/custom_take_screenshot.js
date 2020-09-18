@@ -2,6 +2,11 @@ const process = require('process');
 const path = require('path');
 const env = require('../shared/env');
 
+/**
+ * Take a screenshot and save it to the output dir
+ *
+ * @param {string} filename - An optional filename
+ */
 const command = function (filename = 'screenshot') {
   this.perform(() => {
     const filePath = path.resolve(

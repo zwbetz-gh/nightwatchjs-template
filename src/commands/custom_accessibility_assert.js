@@ -19,6 +19,11 @@ const scriptBody = function (context, options, done) {
     });
 };
 
+/**
+ * Assert accessibility of the page
+ *
+ * @param {string} context - An optional CSS selector to set the context of the assert
+ */
 const command = function (context = 'html') {
   this.perform(() => {
     console.log(`Using context ${context}`);
