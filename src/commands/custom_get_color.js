@@ -19,6 +19,13 @@ const parseRgbToHex = (rgb) => {
   return hex;
 };
 
+/**
+ * Get the hex color or background color of an element
+ *
+ * @param {string} selector - The CSS selector
+ * @param {function(string)} callback - The callback, which gets the element color
+ * @param {string} cssProperty - An optional CSS property, must be one of: color, backgroundColor
+ */
 const command = function (selector, callback, cssProperty = 'color') {
   this.perform(() => {
     const funcBody = function (scopedSelector, scopedCssProperty) {
