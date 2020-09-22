@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const {getPages} = require('../shared/pages');
 const env = require('../shared/env');
 
 module.exports = {
@@ -15,83 +16,66 @@ module.exports = {
   },
 
   'api playground for expect': (browser) => {
-    browser.page.template_page().navigate();
+    const pages = getPages(browser);
 
-    browser.page.template_page().expect.element('@number1').to.be.an('input');
+    pages.template_page.navigate();
+
+    browser.expect.element(pages.template_page.number1).to.be.an('input');
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
-      browser.page.template_page().expect.element('@number1').to.not.be.active;
+      browser.expect.element(pages.template_page.number1).to.not.be.active;
 
-      browser.page.template_page().clickNumber1();
+      pages.template_page.clickNumber1();
 
-      browser.page.template_page().expect.element('@number1').to.be.active;
+      browser.expect.element(pages.template_page.number1).to.be.active;
     }
 
-    browser.page
-      .template_page()
-      .expect.element('@number1')
+    browser.expect
+      .element(pages.template_page.number1)
       .to.have.attribute('class')
       .which.equals('form-control form-control-lg');
 
-    browser.page
-      .template_page()
-      .expect.element('@number1')
+    browser.expect
+      .element(pages.template_page.number1)
       .to.have.css('display')
       .which.equals('block');
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
-      browser.page
-        .template_page()
-        .expect.element('@number1')
+      browser.expect
+        .element(pages.template_page.number1)
         .to.have.css('color')
         .which.equals('rgba(73, 80, 87, 1)'); // #495057
     }
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('FIREFOX')) {
-      browser.page
-        .template_page()
-        .expect.element('@number1')
+      browser.expect
+        .element(pages.template_page.number1)
         .to.have.css('color')
         .which.equals('rgb(73, 80, 87)'); // #495057
     }
 
-    browser.page.template_page().expect.element('@number1').to.be.enabled;
+    browser.expect.element(pages.template_page.number1).to.be.enabled;
 
-    browser.page.template_page().expect.element('@number1').to.be.present;
+    browser.expect.element(pages.template_page.number1).to.be.present;
 
-    browser.page.template_page().expect.element('@number1').to.not.be.selected;
+    browser.expect.element(pages.template_page.number1).to.not.be.selected;
 
-    browser.page
-      .template_page()
-      .expect.element('h1')
-      .text.to.equal('Sample Calculator App');
+    browser.expect.element('h1').text.to.equal('Sample Calculator App');
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
-      browser.page
-        .template_page()
-        .expect.element('@number1')
-        .value.to.equal('');
+      browser.expect.element(pages.template_page.number1).value.to.equal('');
 
-      browser.page.template_page().setNumber1('1');
+      pages.template_page.setNumber1('1');
 
-      browser.page
-        .template_page()
-        .expect.element('@number1')
-        .value.to.equal('1');
+      browser.expect.element(pages.template_page.number1).value.to.equal('1');
     }
 
-    browser.page.template_page().expect.element('@number1').to.be.visible;
+    browser.expect.element(pages.template_page.number1).to.be.visible;
 
-    browser.page
-      .template_page()
-      .expect.elements('@operation')
-      .count.to.equal(1);
+    browser.expect.elements(pages.template_page.operation).count.to.equal(1);
 
-    browser.page
-      .template_page()
-      .expect.title()
-      .to.contain('Sample Calculator App');
+    browser.expect.title().to.contain('Sample Calculator App');
 
-    browser.page.template_page().expect.url().to.contain('http');
+    browser.expect.url().to.contain('http');
   }
 };

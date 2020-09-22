@@ -1,5 +1,5 @@
 const hooks = require('../shared/hooks');
-const template_page = require('../page_objects/template_page');
+const {getPages} = require('../shared/pages');
 
 module.exports = {
   '@disabled': false,
@@ -15,15 +15,17 @@ module.exports = {
   },
 
   'get color': (browser) => {
-    browser.page.template_page().navigate();
+    const pages = getPages(browser);
 
-    browser.custom_get_color(template_page.elements.number1, (actualColor) => {
+    pages.template_page.navigate();
+
+    browser.custom_get_color(pages.template_page.number1, (actualColor) => {
       const expectedColor = '#495057';
       browser.assert.strictEqual(actualColor, expectedColor);
     });
 
     browser.custom_get_color(
-      template_page.elements.number1,
+      pages.template_page.number1,
       (actualColor) => {
         const expectedColor = '#495057';
         browser.assert.strictEqual(actualColor, expectedColor);
@@ -32,7 +34,7 @@ module.exports = {
     );
 
     browser.custom_get_color(
-      template_page.elements.number1,
+      pages.template_page.number1,
       (actualColor) => {
         const expectedColor = '#FFFFFF';
         browser.assert.strictEqual(actualColor, expectedColor);

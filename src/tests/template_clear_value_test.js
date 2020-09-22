@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const {getPages} = require('../shared/pages');
 
 module.exports = {
   '@disabled': false,
@@ -14,12 +15,16 @@ module.exports = {
   },
 
   'clear value': (browser) => {
-    browser.page
-      .template_page()
-      .navigate()
-      .setNumber1('123')
-      .assert.value('@number1', '123')
-      .custom_clear_value('@number1')
-      .assert.value('@number1', '');
+    const pages = getPages(browser);
+
+    pages.template_page.navigate();
+
+    pages.template_page.setNumber1('123');
+
+    browser.assert.value(pages.template_page.number1, '123');
+
+    browser.custom_clear_value(pages.template_page.number1);
+
+    browser.assert.value(pages.template_page.number1, '');
   }
 };

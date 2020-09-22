@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const {getPages} = require('../shared/pages');
 
 module.exports = {
   '@disabled': false,
@@ -14,7 +15,9 @@ module.exports = {
   },
 
   'accessibility expect failure': (browser) => {
-    browser.page.template_page().navigate();
+    const pages = getPages(browser);
+
+    pages.template_page.navigate();
 
     browser.custom_accessibility_assert();
   }

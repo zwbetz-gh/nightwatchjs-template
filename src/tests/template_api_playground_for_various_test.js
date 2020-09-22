@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const {getPages} = require('../shared/pages');
 const {makePrettyJson} = require('../shared/shared');
 const env = require('../shared/env');
 
@@ -18,74 +19,72 @@ module.exports = {
   },
 
   'api playground for various': (browser) => {
-    browser.page.template_page().navigate();
+    const pages = getPages(browser);
 
-    const element = '@operation';
+    pages.template_page.navigate();
+
+    const element = pages.template_page.operation;
     const attribute = 'class';
     const cssProperty = 'display';
     const property = 'innerHTML';
 
-    browser.page.template_page().getAttribute(element, attribute, (result) => {
+    browser.getAttribute(element, attribute, (result) => {
       console.log(
         `getAttribute ${element} ${attribute} ${makePrettyJson(result.value)}`
       );
       separator();
     });
 
-    browser.page
-      .template_page()
-      .getCssProperty(element, cssProperty, (result) => {
-        console.log(
-          `getCssProperty ${element} ${cssProperty} ${makePrettyJson(
-            result.value
-          )}`
-        );
-        separator();
-      });
+    browser.getCssProperty(element, cssProperty, (result) => {
+      console.log(
+        `getCssProperty ${element} ${cssProperty} ${makePrettyJson(
+          result.value
+        )}`
+      );
+      separator();
+    });
 
-    browser.page
-      .template_page()
-      .getElementProperty(element, property, (result) => {
-        console.log(
-          `getElementProperty ${element} ${property} ${makePrettyJson(
-            result.value
-          )}`
-        );
-        separator();
-      });
+    browser.getElementProperty(element, property, (result) => {
+      console.log(
+        `getElementProperty ${element} ${property} ${makePrettyJson(
+          result.value
+        )}`
+      );
+      separator();
+    });
 
-    browser.page.template_page().getElementSize(element, (result) => {
+    browser.getElementSize(element, (result) => {
       console.log(`getElementSize ${element} ${makePrettyJson(result.value)}`);
       separator();
     });
 
-    browser.page.template_page().getTagName(element, (result) => {
+    browser.getTagName(element, (result) => {
       console.log(`getTagName ${element} ${makePrettyJson(result.value)}`);
       separator();
     });
 
-    browser.page.template_page().getText(element, (result) => {
+    browser.getText(element, (result) => {
       console.log(`getText ${element} ${makePrettyJson(result.value)}`);
       separator();
     });
 
-    browser.page.template_page().getValue(element, (result) => {
+    browser.getValue(element, (result) => {
       console.log(`getValue ${element} ${makePrettyJson(result.value)}`);
       separator();
     });
 
-    browser.page.template_page().isVisible(element, (result) => {
+    browser.isVisible(element, (result) => {
       console.log(`isVisible ${element} ${makePrettyJson(result.value)}`);
       separator();
     });
 
-    browser.page.template_page().getLocation(element, (result) => {
+    browser.getLocation(element, (result) => {
       console.log(`getLocation ${element} ${makePrettyJson(result.value)}`);
       separator();
     });
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
-      browser.page.template_page().getLocationInView(element, (result) => {
+      browser.getLocationInView(element, (result) => {
         console.log(
           `getLocationInView ${element} ${makePrettyJson(result.value)}`
         );

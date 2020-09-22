@@ -6,6 +6,7 @@ This repo is a distillation of personal lessons learned, providing a template to
 
 ## Highlights
 
+- IntelliSense (code-completion) for page objects
 - Sample templates for how to structure your page objects and tests
 - Custom `beforeEach` and `afterEach` hooks to do common operations
 - Built-in WebDriver environments for ChromeDriver, ChromeDriver headless, GeckoDriver, and GeckoDriver headless

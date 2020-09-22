@@ -1,43 +1,48 @@
-const url = function () {
-  return this.api.launchUrl;
-};
+let browser;
 
-const elements = {
+const page = {
+  init: function (b) {
+    browser = b;
+    return this;
+  },
+  navigate: function () {
+    browser.url(browser.launchUrl);
+    return this;
+  },
+
   number1: '#number-1',
   operation: '#operation',
   number2: '#number-2',
-  result: '#result'
-};
+  result: '#result',
 
-const commands = {
   clickNumber1: function () {
-    this.waitForElementVisible(elements.number1);
-    this.click(elements.number1);
+    browser.waitForElementVisible(this.number1);
+    browser.click(this.number1);
     return this;
   },
   setNumber1: function (val) {
-    this.waitForElementVisible(elements.number1);
-    this.setValue(elements.number1, val);
+    browser.waitForElementVisible(this.number1);
+    browser.setValue(this.number1, val);
     return this;
   },
   clickOperation: function () {
-    this.waitForElementVisible(elements.operation);
-    this.click(elements.operation);
+    browser.waitForElementVisible(this.operation);
+    browser.click(this.operation);
     return this;
   },
   setOperation: function (val) {
-    this.waitForElementVisible(elements.operation);
-    this.setValue(elements.operation, val);
+    browser.waitForElementVisible(this.operation);
+    browser.setValue(this.operation, val);
     return this;
   },
   clickNumber2: function () {
-    this.waitForElementVisible(elements.number2);
-    this.customClick(elements.number2);
+    browser.waitForElementVisible(this.number2);
+    browser.click(this.number2);
     return this;
   },
   setNumber2: function (val) {
-    this.waitForElementVisible(elements.number2);
-    this.setValue(elements.number2, val);
+    browser.waitForElementVisible(this.number2);
+    browser.setValue(this.number2, val);
     return this;
   },
   calculateResult: function (number1, operation, number2) {
@@ -48,8 +53,4 @@ const commands = {
   }
 };
 
-module.exports = {
-  url: url,
-  elements: elements,
-  commands: [commands]
-};
+module.exports = page;

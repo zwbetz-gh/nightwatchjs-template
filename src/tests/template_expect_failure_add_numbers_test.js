@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const {getPages} = require('../shared/pages');
 
 module.exports = {
   '@disabled': false,
@@ -14,11 +15,14 @@ module.exports = {
   },
 
   'add numbers and expect failure': (browser) => {
-    browser.page
-      .template_page()
-      .navigate()
-      .calculateResult('5', '+', '5')
-      .expect.element('@result')
+    const pages = getPages(browser);
+
+    pages.template_page.navigate();
+
+    pages.template_page.calculateResult('5', '+', '5');
+
+    browser.expect
+      .element(pages.template_page.result)
       .value.to.equal('1')
       .before(100);
   }

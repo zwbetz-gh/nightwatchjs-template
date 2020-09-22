@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const {getPages} = require('../shared/pages');
 
 module.exports = {
   '@disabled': false,
@@ -14,10 +15,12 @@ module.exports = {
   },
 
   'divide numbers': (browser) => {
-    browser.page
-      .template_page()
-      .navigate()
-      .calculateResult('5', '/', '5')
-      .assert.value('@result', '1');
+    const pages = getPages(browser);
+
+    pages.template_page.navigate();
+
+    pages.template_page.calculateResult('5', '/', '5');
+
+    browser.assert.value(pages.template_page.result, '1');
   }
 };

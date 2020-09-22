@@ -1,4 +1,5 @@
 const hooks = require('../shared/hooks');
+const {getPages} = require('../shared/pages');
 const env = require('../shared/env');
 
 module.exports = {
@@ -15,19 +16,21 @@ module.exports = {
   },
 
   'api playground for assert': (browser) => {
-    browser.page.template_page().navigate();
+    const pages = getPages(browser);
 
-    browser.page
-      .template_page()
-      .assert.attributeContains('@number1', 'class', 'form-control');
+    pages.template_page.navigate();
 
-    browser.page
-      .template_page()
-      .assert.attributeEquals(
-        '@number1',
-        'class',
-        'form-control form-control-lg'
-      );
+    browser.assert.attributeContains(
+      pages.template_page.number1,
+      'class',
+      'form-control'
+    );
+
+    browser.assert.attributeEquals(
+      pages.template_page.number1,
+      'class',
+      'form-control form-control-lg'
+    );
 
     browser.assert.containsText('h1', 'Sample');
 
@@ -37,44 +40,47 @@ module.exports = {
       browser.assert.strictEqual(actual, expected);
     });
 
-    browser.page
-      .template_page()
-      .assert.cssClassPresent('@number1', ['form-control', 'form-control-lg']);
+    browser.assert.cssClassPresent(pages.template_page.number1, [
+      'form-control',
+      'form-control-lg'
+    ]);
 
-    browser.page
-      .template_page()
-      .assert.cssProperty('@number1', 'display', 'block');
+    browser.assert.cssProperty(pages.template_page.number1, 'display', 'block');
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
-      browser.page.template_page().assert.cssProperty(
-        '@number1',
+      browser.assert.cssProperty(
+        pages.template_page.number1,
         'color',
         'rgba(73, 80, 87, 1)' // #495057
       );
     }
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('FIREFOX')) {
-      browser.page.template_page().assert.cssProperty(
-        '@number1',
+      browser.assert.cssProperty(
+        pages.template_page.number1,
         'color',
         'rgb(73, 80, 87)' // #495057
       );
     }
 
-    browser.page
-      .template_page()
-      .assert.domPropertyContains('@number1', 'tagName', 'INPUT');
+    browser.assert.domPropertyContains(
+      pages.template_page.number1,
+      'tagName',
+      'INPUT'
+    );
 
-    browser.page
-      .template_page()
-      .assert.domPropertyEquals('@operation', 'tagName', 'SELECT');
+    browser.assert.domPropertyEquals(
+      pages.template_page.operation,
+      'tagName',
+      'SELECT'
+    );
 
-    browser.page.template_page().assert.elementPresent('@number1');
+    browser.assert.elementPresent(pages.template_page.number1);
 
     browser.assert.title('Sample Calculator App');
 
     browser.assert.urlContains('http');
 
-    browser.page.template_page().assert.visible('@number1');
+    browser.assert.visible(pages.template_page.number1);
   }
 };
