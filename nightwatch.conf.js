@@ -198,7 +198,7 @@ module.exports = {
   src_folders: ['src/tests'],
 
   // Location(s) where page object files will be loaded from.
-  page_objects_path: ['src/page_objects'],
+  page_objects_path: [],
 
   // Location(s) where custom commands will be loaded from.
   custom_commands_path: ['src/commands'],
