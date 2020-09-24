@@ -10,7 +10,7 @@ const customClearValue = (thisRef, selector) => {
     thisRef.waitForElementVisible(selector);
     thisRef.click(selector);
     console.log(
-      `Clearing element ${selector.name} value ${result.value} by sending ${length} BACK_SPACE keys`
+      `Clearing element ${selector} value ${result.value} by sending ${length} BACK_SPACE keys`
     );
     for (let i = 0; i < length; i++) {
       thisRef.keys([keys.BACK_SPACE]);
