@@ -27,60 +27,84 @@ const click = (browser, selector, text, viaJs = false) => {
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
  * @param {string} value - The value to set
- * @param {boolean} [verifyValue] - If true, verify the value that was set
+ * @param {boolean} [viaJs] - If true, set the element value via JS. If false, set the element value via WebDriver
+ * @param {boolean} [assertValue] - If true, assert the value that was set
  */
-const setValue = (browser, selector, value, verifyValue = true) => {
+const setValue = (
+  browser,
+  selector,
+  value,
+  viaJs = false,
+  assertValue = true
+) => {
   browser.waitForElementVisible(selector);
   browser.expect.element(selector).to.be.enabled;
-  browser.setValue(selector, value);
 
-  if (verifyValue) {
+  if (viaJs) {
+    browser.custom_js_set_value(selector, value);
+  } else {
+    browser.setValue(selector, value);
+  }
+
+  if (assertValue) {
     browser.expect.element(selector).value.to.equal(value);
   }
 };
 
 /**
- * Verify the value of an element.
+ * Assert the value of an element.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
- * @param {string} value - The value to verify
+ * @param {string} value - The value to assert
  */
-const verifyValue = (browser, selector, value) => {
+const assertValue = (browser, selector, value) => {
   browser.waitForElementVisible(selector);
   browser.expect.element(selector).value.to.equal(value);
 };
 
 /**
- * Verify the text of an element.
+ * Assert the text of an element.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
- * @param {string} text - The text to verify
+ * @param {string} text - The text to assert
  */
-const verifyText = (browser, selector, text) => {
+const assertText = (browser, selector, text) => {
   browser.waitForElementVisible(selector);
   browser.expect.element(selector).text.to.equal(text);
 };
 
 /**
- * Verify that an element is enabled.
+ * Assert that an element contains text.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} text - The text to assert
+ */
+const assertContainsText = (browser, selector, text) => {
+  browser.waitForElementVisible(selector);
+  browser.assert.containsText(selector, text);
+};
+
+/**
+ * Assert that an element is enabled.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
  */
-const verifyEnabled = (browser, selector) => {
+const assertEnabled = (browser, selector) => {
   browser.waitForElementVisible(selector);
   browser.expect.element(selector).to.be.enabled;
 };
 
 /**
- * Verify that an element is not enabled.
+ * Assert that an element is not enabled.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
  */
-const verifyNotEnabled = (browser, selector) => {
+const assertNotEnabled = (browser, selector) => {
   browser.waitForElementVisible(selector);
   browser.expect.element(selector).to.not.be.enabled;
 };
@@ -88,8 +112,9 @@ const verifyNotEnabled = (browser, selector) => {
 module.exports = {
   click,
   setValue,
-  verifyValue,
-  verifyText,
-  verifyEnabled,
-  verifyNotEnabled
+  assertValue,
+  assertText,
+  assertContainsText,
+  assertEnabled,
+  assertNotEnabled
 };

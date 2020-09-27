@@ -30,7 +30,7 @@ const page = {
     return this;
   },
   setOperation(val) {
-    helper.setValue(browser, this.operation, val, false);
+    helper.setValue(browser, this.operation, val, false, false);
     return this;
   },
   clickNumber2() {

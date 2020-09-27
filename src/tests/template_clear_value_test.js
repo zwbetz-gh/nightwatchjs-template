@@ -1,5 +1,6 @@
 const hooks = require('../shared/hooks');
 const {getPages} = require('../shared/pages');
+const helper = require('../shared/helper');
 
 module.exports = {
   '@disabled': false,
@@ -21,10 +22,10 @@ module.exports = {
 
     pages.template_page.setNumber1('123');
 
-    browser.expect.element(pages.template_page.number1).value.to.equal('123');
+    helper.assertValue(browser, pages.template_page.number1, '123');
 
     browser.custom_clear_value(pages.template_page.number1);
 
-    browser.expect.element(pages.template_page.number1).value.to.equal('');
+    helper.assertValue(browser, pages.template_page.number1, '');
   }
 };

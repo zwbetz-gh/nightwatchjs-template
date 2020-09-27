@@ -1,6 +1,7 @@
 const hooks = require('../shared/hooks');
 const {getPages} = require('../shared/pages');
 const env = require('../shared/env');
+const helper = require('../shared/helper');
 
 module.exports = {
   '@disabled': false,
@@ -31,13 +32,13 @@ module.exports = {
       browser.expect.element(pages.template_page.number1).to.be.active;
 
       // custom_js_set_value
-      browser.expect.element(pages.template_page.number1).value.to.equal('');
+      helper.assertValue(browser, pages.template_page.number1, '');
 
       browser.custom_js_set_value('#does-not-exist', '123');
 
       browser.custom_js_set_value(pages.template_page.number1, '123');
 
-      browser.expect.element(pages.template_page.number1).value.to.equal('123');
+      helper.assertValue(browser, pages.template_page.number1, '123');
     }
   }
 };

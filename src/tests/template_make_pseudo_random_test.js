@@ -1,6 +1,7 @@
 const hooks = require('../shared/hooks');
 const {getPages} = require('../shared/pages');
 const {makePseudoRandom} = require('../shared/shared');
+const helper = require('../shared/helper');
 
 module.exports = {
   '@disabled': false,
@@ -26,6 +27,6 @@ module.exports = {
 
     pages.template_page.calculateResult(String(number1), '+', String(number2));
 
-    browser.assert.value(pages.template_page.result, String(result));
+    helper.assertValue(browser, pages.template_page.result, String(result));
   }
 };

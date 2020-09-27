@@ -1,5 +1,6 @@
 const hooks = require('../shared/hooks');
 const {getPages} = require('../shared/pages');
+const helper = require('../shared/helper');
 
 module.exports = {
   '@disabled': false,
@@ -21,6 +22,6 @@ module.exports = {
 
     pages.template_page.calculateResult('5', '*', '5');
 
-    browser.expect.element(pages.template_page.result).value.to.equal('25');
+    helper.assertValue(browser, pages.template_page.result, '25');
   }
 };
