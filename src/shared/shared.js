@@ -56,11 +56,51 @@ const readDataFromFile = (filePath, encoding = 'utf8') => {
 
 const isWindows = () => os.platform() === 'win32';
 
+const makePseudoRandom = (length, characterType) => {
+  const validCharacterTypes = ['alpha', 'numeric', 'alphanumeric'];
+
+  if (typeof length !== 'number') {
+    assert.fail('length must be a number');
+  }
+
+  if (typeof characterType !== 'string') {
+    assert.fail('characterType must be a string');
+  }
+
+  if (!validCharacterTypes.includes(characterType)) {
+    assert.fail(
+      `characterType must be one of: ${validCharacterTypes.join(', ')}`
+    );
+  }
+
+  let characters = '';
+  let result = '';
+
+  const alphaCharacters = 'abcdefghijklmnopqrstuvwxyz';
+  const numericCharacters = '0123456789';
+  const alphanumericCharacters = alphaCharacters + numericCharacters;
+
+  if (characterType === 'alpha') {
+    characters = alphaCharacters;
+  } else if (characterType === 'numeric') {
+    characters = numericCharacters;
+  } else {
+    characters = alphanumericCharacters;
+  }
+
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  return result;
+};
+
 module.exports = {
   getReportDir,
   walk,
   makePrettyJson,
   writeDataToFile,
   readDataFromFile,
-  isWindows
+  isWindows,
+  makePseudoRandom
 };
