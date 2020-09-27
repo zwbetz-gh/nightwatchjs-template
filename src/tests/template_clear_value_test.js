@@ -21,10 +21,10 @@ module.exports = {
 
     pages.template_page.setNumber1('123');
 
-    browser.assert.value(pages.template_page.number1, '123');
+    browser.expect.element(pages.template_page.number1).value.to.equal('123');
 
     browser.custom_clear_value(pages.template_page.number1);
 
-    browser.assert.value(pages.template_page.number1, '');
+    browser.expect.element(pages.template_page.number1).value.to.equal('');
   }
 };

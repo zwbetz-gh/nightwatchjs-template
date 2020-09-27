@@ -21,6 +21,6 @@ module.exports = {
 
     pages.template_page.calculateResult('5', '-', '5');
 
-    browser.assert.value(pages.template_page.result, '0');
+    browser.expect.element(pages.template_page.result).value.to.equal('0');
   }
 };
