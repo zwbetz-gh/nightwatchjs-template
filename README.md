@@ -8,6 +8,7 @@ This repo is a distillation of personal lessons learned, providing a template to
 
 - IntelliSense (code-completion) for page objects, since they're Plain Old JavaScript Objects
 - Sample templates for how to structure your page objects and tests
+- Custom helper for boilerplate actions like click, set value, and assert value
 - Custom `beforeEach` and `afterEach` hooks to do common operations
 - Built-in WebDriver environments for ChromeDriver, ChromeDriver headless, GeckoDriver, and GeckoDriver headless
 - Custom reporting in JSON, XML, and HTML formats
@@ -15,6 +16,8 @@ This repo is a distillation of personal lessons learned, providing a template to
     - HTML reports are fully portable, since their CSS is inlined, and their screenshots are Base64 encoded
 - Custom commands
     - Assert accessibility via [axe](https://github.com/dequelabs/axe-core)
+    - Click element via JavaScript
+    - Set element value via JavaScript
     - Clear element value via BACK_SPACE keys
     - Get element hex color
     - Get browser console logs
@@ -53,6 +56,7 @@ This repo is a distillation of personal lessons learned, providing a template to
   * [Write JSON, XML, HTML Reports](#write-json-xml-html-reports)
   * [Write Tags JSON, HTML Reports](#write-tags-json-html-reports)
   * [Run Prettier](#run-prettier)
+  * [Run Linter](#run-linter)
 - [Output](#output)
   * [Reports](#reports)
   * [Screenshots](#screenshots)
@@ -196,6 +200,10 @@ NIGHTWATCH_CHROMEDRIVER_ARGS=incognito
 ### Run Prettier
 
     npm run prettier
+
+### Run Linter
+
+    npm run lint
 
 ## Output
 

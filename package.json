@@ -22,12 +22,12 @@
     "test": "npm run base ; npm run report",
     "toc": "markdown-toc -i README.md",
     "prettier": "prettier --write \"**/*.js\"",
-    "eslint": "eslint --ext .js --fix ."
+    "lint": "eslint --ext .js --fix ."
   },
   "lint-staged": {
     "*.js": [
       "npm run prettier",
-      "npm run eslint"
+      "npm run lint"
     ]
   },
   "husky": {
