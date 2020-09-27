@@ -20,7 +20,7 @@ const parseRgbToHex = (rgb) => {
 };
 
 /**
- * Get the hex color or background color of an element
+ * Get the hex color or background color of an element.
  *
  * @param {string} selector - The CSS selector
  * @param {function(string)} callback - The callback, which gets the element color

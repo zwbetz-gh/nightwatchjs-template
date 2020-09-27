@@ -1,5 +1,5 @@
 /**
- * Get browser or driver logs
+ * Get browser or driver logs.
  *
  * @param {string} logType - An optional logType, must be one of: browser, driver
  * @param {function()} callback - An optional callback

@@ -3,7 +3,7 @@ const path = require('path');
 const env = require('../shared/env');
 
 /**
- * Take a screenshot and save it to the output dir
+ * Take a screenshot and save it to the output dir.
  *
  * @param {string} filename - An optional filename
  */

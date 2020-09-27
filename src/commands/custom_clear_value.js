@@ -20,7 +20,7 @@ const customClearValue = (thisRef, selector) => {
 };
 
 /**
- * Clear the value of an element
+ * Clear the value of an element.
  *
  * @param {string} selector - The CSS selector
  * @param {number} numberOfTimesToRun - An optional number of times to run

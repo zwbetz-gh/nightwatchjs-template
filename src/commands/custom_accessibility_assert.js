@@ -20,7 +20,7 @@ const scriptBody = function (context, options, done) {
 };
 
 /**
- * Assert accessibility of the page
+ * Assert accessibility of the page.
  *
  * @param {string} context - An optional CSS selector to set the context of the assert
  */

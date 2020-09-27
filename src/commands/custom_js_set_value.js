@@ -6,7 +6,7 @@ const defaultCallback = function (response) {
 };
 
 /**
- * Set an element with a value via js
+ * Set an element with a value via js.
  *
  * @param {string} selector - The CSS selector
  * @param {string} value - The value to set

@@ -6,7 +6,7 @@ const defaultCallback = function (response) {
 };
 
 /**
- * Click an element via js
+ * Click an element via js.
  *
  * @param {string} selector - The CSS selector
  * @param {function(Object)} callback - An optional callback
