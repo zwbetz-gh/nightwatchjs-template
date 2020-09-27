@@ -1,4 +1,4 @@
-const page_helper = require('../shared/page_helper');
+const helper = require('../shared/helper');
 
 let browser;
 
@@ -18,27 +18,27 @@ const page = {
   result: '#result',
 
   clickNumber1() {
-    page_helper.click(browser, this.number1);
+    helper.click(browser, this.number1);
     return this;
   },
   setNumber1(val) {
-    page_helper.setValue(browser, this.number1, val);
+    helper.setValue(browser, this.number1, val);
     return this;
   },
   clickOperation() {
-    page_helper.click(browser, this.operation);
+    helper.click(browser, this.operation);
     return this;
   },
   setOperation(val) {
-    page_helper.setValue(browser, this.operation, val, false);
+    helper.setValue(browser, this.operation, val, false);
     return this;
   },
   clickNumber2() {
-    page_helper.click(browser, this.number2);
+    helper.click(browser, this.number2);
     return this;
   },
   setNumber2(val) {
-    page_helper.setValue(browser, this.number2, val);
+    helper.setValue(browser, this.number2, val);
     return this;
   },
   calculateResult(number1, operation, number2) {
