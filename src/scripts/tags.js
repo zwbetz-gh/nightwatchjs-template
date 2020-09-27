@@ -16,6 +16,7 @@ const getTests = (filePaths) => {
   const tests = [];
   for (const fp of filePaths) {
     const req = `..${fp.replace(`${process.cwd()}/src`, '')}`;
+    // eslint-disable-next-line global-require, import/no-dynamic-require
     const module = require(req);
     const relativeFilePath = `src${req.replace('..', '')}`;
     const test = {
@@ -67,13 +68,15 @@ const makeStatsTable = (reportData) => {
   const statsTableBody = () => {
     const rows = [];
     for (const key in statsObj) {
-      const row = `
-      <tr>
-        <th scope="row">${key}</th>
-        <td>${statsObj[key]}</td>
-      </tr>
-      `;
-      rows.push(row);
+      if (Object.prototype.hasOwnProperty.call(statsObj, key)) {
+        const row = `
+        <tr>
+          <th scope="row">${key}</th>
+          <td>${statsObj[key]}</td>
+        </tr>
+        `;
+        rows.push(row);
+      }
     }
     return rows.join('\n');
   };

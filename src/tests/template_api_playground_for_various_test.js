@@ -103,21 +103,23 @@ module.exports = {
     });
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
-      browser.execute(
-        function () {
-          console.log('log');
-          console.info('info');
-          console.warn('warn');
-          console.error('error');
-          console.debug('debug');
-          console.trace('trace');
-        },
-        [],
-        () => {
-          console.log('execute');
-          separator();
-        }
-      );
+      const scriptBody = function () {
+        console.log('log');
+        console.info('info');
+        console.warn('warn');
+        console.error('error');
+        console.debug('debug');
+        console.trace('trace');
+      };
+
+      const scriptArgs = [];
+
+      const callback = () => {
+        console.log('execute');
+        separator();
+      };
+
+      browser.execute(scriptBody, scriptArgs, callback);
 
       browser.custom_get_logs('browser', separator);
 

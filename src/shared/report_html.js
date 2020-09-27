@@ -210,13 +210,15 @@ const makeSystemTable = () => {
     const rows = [];
     const sysObj = sys.getSys();
     for (const key in sysObj) {
-      const row = `
-      <tr>
-        <th scope="row">${key}</th>
-        <td>${sysObj[key]}</td>
-      </tr>
-      `;
-      rows.push(row);
+      if (Object.prototype.hasOwnProperty.call(sysObj, key)) {
+        const row = `
+        <tr>
+          <th scope="row">${key}</th>
+          <td>${sysObj[key]}</td>
+        </tr>
+        `;
+        rows.push(row);
+      }
     }
     return rows.join('\n');
   };
@@ -230,13 +232,15 @@ const makeEnvVarsTable = () => {
     const rows = [];
     const envObj = env.getEnv();
     for (const key in envObj) {
-      const row = `
-      <tr>
-        <th scope="row">${key}</th>
-        <td>${envObj[key]}</td>
-      </tr>
-      `;
-      rows.push(row);
+      if (Object.prototype.hasOwnProperty.call(envObj, key)) {
+        const row = `
+        <tr>
+          <th scope="row">${key}</th>
+          <td>${envObj[key]}</td>
+        </tr>
+        `;
+        rows.push(row);
+      }
     }
     return rows.join('\n');
   };
@@ -256,13 +260,15 @@ const makeStatsTable = (reportData) => {
   const statsTableBody = () => {
     const rows = [];
     for (const key in statsObj) {
-      const row = `
-      <tr>
-        <th scope="row">${key}</th>
-        <td>${statsObj[key]}</td>
-      </tr>
-      `;
-      rows.push(row);
+      if (Object.prototype.hasOwnProperty.call(statsObj, key)) {
+        const row = `
+        <tr>
+          <th scope="row">${key}</th>
+          <td>${statsObj[key]}</td>
+        </tr>
+        `;
+        rows.push(row);
+      }
     }
     return rows.join('\n');
   };

@@ -1,4 +1,3 @@
-const page = require('../page_objects/template_page');
 const hooks = require('../shared/hooks');
 const {getPages} = require('../shared/pages');
 const {makePseudoRandom} = require('../shared/shared');
