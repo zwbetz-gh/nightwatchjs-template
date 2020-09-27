@@ -30,9 +30,7 @@ const page = {
     return this;
   },
   setOperation(val) {
-    browser.waitForElementVisible(this.operation);
-    browser.expect.element(this.operation).to.be.enabled;
-    browser.setValue(this.operation, val);
+    page_helper.setValue(browser, this.operation, val, false);
     return this;
   },
   clickNumber2() {

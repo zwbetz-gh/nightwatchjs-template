@@ -13,11 +13,14 @@ const click = (browser, selector, text, viaJs) => {
   }
 };
 
-const setValue = (browser, selector, value) => {
+const setValue = (browser, selector, value, verifyValue = true) => {
   browser.waitForElementVisible(selector);
   browser.expect.element(selector).to.be.enabled;
   browser.setValue(selector, value);
-  browser.expect.element(selector).value.to.equal(value);
+
+  if (verifyValue) {
+    browser.expect.element(selector).value.to.equal(value);
+  }
 };
 
 const verifyValue = (browser, selector, value) => {
