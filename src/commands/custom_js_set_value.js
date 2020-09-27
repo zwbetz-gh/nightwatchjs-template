@@ -6,7 +6,7 @@ const defaultCallback = function (response) {
 };
 
 /**
- * Set an element with a value via js.
+ * Set the value of an element via js.
  *
  * @param {string} selector - The CSS selector
  * @param {string} value - The value to set
@@ -22,8 +22,9 @@ const command = function (selector, value, callback = defaultCallback) {
       };
       const el = document.querySelector(querySelector);
       if (el) {
-        el.value = elValue;
         response.elementFound = true;
+        el.focus();
+        el.value = elValue;
       }
       return response;
     };
