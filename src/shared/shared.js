@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
+const assert = require('assert');
 const env = require('./env');
 
 const getReportDir = () =>
@@ -56,6 +57,12 @@ const readDataFromFile = (filePath, encoding = 'utf8') => {
 
 const isWindows = () => os.platform() === 'win32';
 
+/**
+ * Make a pseudo random string.
+ *
+ * @param {number} length - The desired length
+ * @param {string} characterType - The character type. Must be one of: 'alpha', 'numeric', 'alphanumeric'
+ */
 const makePseudoRandom = (length, characterType) => {
   const validCharacterTypes = ['alpha', 'numeric', 'alphanumeric'];
 
@@ -89,7 +96,8 @@ const makePseudoRandom = (length, characterType) => {
   }
 
   for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
+    const position = Math.floor(Math.random() * characters.length);
+    result += characters.charAt(position);
   }
 
   return result;
