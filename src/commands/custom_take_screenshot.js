@@ -1,5 +1,6 @@
 const process = require('process');
 const path = require('path');
+const chalk = require('chalk');
 const env = require('../shared/env');
 
 /**
@@ -15,7 +16,7 @@ const command = function (filename = 'screenshot') {
       'screenshots',
       `${filename}-${Date.now()}.png`
     );
-    console.log(`Saving screenshot to ${filePath}`);
+    console.log(`Saving screenshot to ${chalk.cyan(filePath)}`);
     this.saveScreenshot(filePath);
   });
 

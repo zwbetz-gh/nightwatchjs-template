@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const xml2js = require('xml2js');
+const chalk = require('chalk');
 const {
   walk,
   writeDataToFile,
@@ -32,7 +33,7 @@ const parseXmlReports = async (exemptFilePath) => {
   const files = walk(getReportDir()) || [];
   for (const file of files) {
     if (isXmlFile(file) && !file.includes(exemptFilePath)) {
-      console.log(`Parsing XML file ${file}`);
+      console.log(`Parsing XML file ${chalk.cyan(file)}`);
       const xmlString = fs.readFileSync(file, 'utf8');
       const obj = await convertXmlStringToJsObject(xmlString);
       reports.push(obj);

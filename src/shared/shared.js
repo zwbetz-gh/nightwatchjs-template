@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const assert = require('assert');
+const chalk = require('chalk');
 const env = require('./env');
 
 const getReportDir = () =>
@@ -24,7 +25,7 @@ const walk = (dir) => {
     });
     return results;
   } catch (error) {
-    console.error(`Error when walking dir ${dir}`, error);
+    console.error(`Error when walking dir ${chalk.cyan(dir)}`, error);
   }
 };
 
@@ -35,21 +36,27 @@ const makePrettyJson = (data) => {
 
 const writeDataToFile = (data, filePath) => {
   try {
-    console.log(`Writing file ${filePath}`);
+    console.log(`Writing file ${chalk.cyan(filePath)}`);
     fs.writeFileSync(filePath, data);
   } catch (error) {
-    console.error(`Error when writing file ${filePath}`, error);
+    console.error(`Error when writing file ${chalk.cyan(filePath)}`, error);
   }
 };
 
 const readDataFromFile = (filePath, encoding = 'utf8') => {
   try {
-    console.log(`Using encoding ${encoding} to read file ${filePath}`);
+    console.log(
+      `Using encoding ${chalk.cyan(encoding)} to read file ${chalk.cyan(
+        filePath
+      )}`
+    );
     const string = fs.readFileSync(filePath, encoding);
     return string;
   } catch (error) {
     console.error(
-      `Error when using encoding ${encoding} to read file ${filePath}`,
+      `Error when using encoding ${chalk.cyan(
+        encoding
+      )} to read file ${chalk.cyan(filePath)}`,
       error
     );
   }

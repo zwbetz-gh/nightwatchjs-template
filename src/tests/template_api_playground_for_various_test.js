@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const hooks = require('../shared/hooks');
 const {getPages} = require('../shared/pages');
 const {makePrettyJson} = require('../shared/shared');
@@ -30,75 +31,105 @@ module.exports = {
 
     browser.getAttribute(element, attribute, (result) => {
       console.log(
-        `getAttribute ${element} ${attribute} ${makePrettyJson(result.value)}`
+        `getAttribute element ${chalk.cyan(element)} attribute ${chalk.cyan(
+          attribute
+        )} is ${chalk.cyan(makePrettyJson(result.value))}`
       );
       separator();
     });
 
     browser.getCssProperty(element, cssProperty, (result) => {
       console.log(
-        `getCssProperty ${element} ${cssProperty} ${makePrettyJson(
-          result.value
-        )}`
+        `getCssProperty element ${chalk.cyan(element)} cssProperty ${chalk.cyan(
+          cssProperty
+        )} is ${chalk.cyan(makePrettyJson(result.value))}`
       );
       separator();
     });
 
     browser.getElementProperty(element, property, (result) => {
       console.log(
-        `getElementProperty ${element} ${property} ${makePrettyJson(
-          result.value
+        `getElementProperty element ${chalk.cyan(
+          element
+        )} property ${chalk.cyan(property)} is ${chalk.cyan(
+          makePrettyJson(result.value)
         )}`
       );
       separator();
     });
 
     browser.getElementSize(element, (result) => {
-      console.log(`getElementSize ${element} ${makePrettyJson(result.value)}`);
+      console.log(
+        `getElementSize element ${chalk.cyan(element)} is ${chalk.cyan(
+          makePrettyJson(result.value)
+        )}`
+      );
       separator();
     });
 
     browser.getTagName(element, (result) => {
-      console.log(`getTagName ${element} ${makePrettyJson(result.value)}`);
+      console.log(
+        `getTagName element ${chalk.cyan(element)} is ${chalk.cyan(
+          makePrettyJson(result.value)
+        )}`
+      );
       separator();
     });
 
     browser.getText(element, (result) => {
-      console.log(`getText ${element} ${makePrettyJson(result.value)}`);
+      console.log(
+        `getText element ${chalk.cyan(element)} is ${chalk.cyan(
+          makePrettyJson(result.value)
+        )}`
+      );
       separator();
     });
 
     browser.getValue(element, (result) => {
-      console.log(`getValue ${element} ${makePrettyJson(result.value)}`);
+      console.log(
+        `getValue element ${chalk.cyan(element)} is ${chalk.cyan(
+          makePrettyJson(result.value)
+        )}`
+      );
       separator();
     });
 
     browser.isVisible(element, (result) => {
-      console.log(`isVisible ${element} ${makePrettyJson(result.value)}`);
+      console.log(
+        `isVisible element ${chalk.cyan(element)} is ${chalk.cyan(
+          makePrettyJson(result.value)
+        )}`
+      );
       separator();
     });
 
     browser.getLocation(element, (result) => {
-      console.log(`getLocation ${element} ${makePrettyJson(result.value)}`);
+      console.log(
+        `getLocation element ${chalk.cyan(element)} is ${chalk.cyan(
+          makePrettyJson(result.value)
+        )}`
+      );
       separator();
     });
 
     if (env.getEnv().NIGHTWATCH_ENVIRONMENT.includes('CHROME')) {
       browser.getLocationInView(element, (result) => {
         console.log(
-          `getLocationInView ${element} ${makePrettyJson(result.value)}`
+          `getLocationInView element ${chalk.cyan(element)} is ${chalk.cyan(
+            makePrettyJson(result.value)
+          )}`
         );
         separator();
       });
     }
 
     browser.url((result) => {
-      console.log(`url ${makePrettyJson(result.value)}`);
+      console.log(`url ${chalk.cyan(makePrettyJson(result.value))}`);
       separator();
     });
 
     browser.title((result) => {
-      console.log(`title ${makePrettyJson(result.value)}`);
+      console.log(`title ${chalk.cyan(makePrettyJson(result.value))}`);
       separator();
     });
 

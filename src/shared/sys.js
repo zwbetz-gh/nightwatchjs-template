@@ -1,4 +1,5 @@
 const os = require('os');
+const chalk = require('chalk');
 
 let sys = {};
 
@@ -8,7 +9,9 @@ const getUsername = () => {
   try {
     username = os.userInfo().username;
   } catch (error) {
-    console.error(`Error when getting username. Defaulting to ${notAvailable}`);
+    console.error(
+      `Error when getting username. Defaulting to ${chalk.cyan(notAvailable)}`
+    );
     username = notAvailable;
   }
   return username;

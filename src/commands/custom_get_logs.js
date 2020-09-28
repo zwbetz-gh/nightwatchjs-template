@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 /**
  * Get browser or driver logs.
  *
@@ -7,9 +9,17 @@
 const command = function (logType = 'browser', callback) {
   this.perform(() => {
     this.getLog(logType, (logEntriesArray) => {
-      console.log(`${logType} logs length: ${logEntriesArray.length}`);
+      console.log(
+        `${chalk.cyan(logType)} logs length: ${chalk.cyan(
+          logEntriesArray.length
+        )}`
+      );
       logEntriesArray.forEach((log) => {
-        console.log(`[${log.level}] [${log.timestamp}] ${log.message}`);
+        console.log(
+          `[${chalk.cyan(log.level)}] [${chalk.cyan(
+            log.timestamp
+          )}] ${chalk.cyan(log.message)}`
+        );
       });
       callback && callback();
     });

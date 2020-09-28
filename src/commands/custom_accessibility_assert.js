@@ -26,7 +26,7 @@ const scriptBody = function (context, options, done) {
  */
 const command = function (context = 'html') {
   this.perform(() => {
-    console.log(`Using context ${context}`);
+    console.log(`Using context ${chalk.cyan(context)}`);
 
     const options = {
       verbose: true,

@@ -1,4 +1,5 @@
 const xml = require('xml');
+const chalk = require('chalk');
 const {warningThereShouldOnlyBeOneTestcasePerFile} = require('./report_html');
 
 const calcTotalErrors = (reportData) => {
@@ -70,7 +71,7 @@ const makeXmlReport = (reportData) => {
   for (const data of reportData) {
     if (data.testsuites.testsuite[0].testcase.length > 1) {
       console.warn(warningThereShouldOnlyBeOneTestcasePerFile);
-      console.warn(`See ${data.testsuites.testsuite[0].$.name}`);
+      console.warn(`See ${chalk.cyan(data.testsuites.testsuite[0].$.name)}`);
     }
   }
 

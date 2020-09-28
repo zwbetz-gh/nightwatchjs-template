@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const {makePrettyJson} = require('../shared/shared');
 
 const defaultCallback = function (response) {
@@ -13,7 +14,7 @@ const defaultCallback = function (response) {
  */
 const command = function (selector, callback = defaultCallback) {
   this.perform(() => {
-    console.log(`Clicking element ${selector} via js`);
+    console.log(`Clicking element ${chalk.cyan(selector)} via js`);
 
     const scriptBody = function (querySelector) {
       const response = {

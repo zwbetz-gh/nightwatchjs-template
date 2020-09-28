@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 const env = require('../shared/env');
 
 const main = () => {
@@ -12,7 +13,7 @@ const main = () => {
     path.resolve(outputDir, 'screenshots')
   ];
   for (const dir of outputSubDirs) {
-    console.log(`Making dir ${dir}`);
+    console.log(`Making dir ${chalk.cyan(dir)}`);
     fs.mkdirSync(dir, {recursive: true});
   }
 };

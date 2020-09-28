@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 const componentToHex = (component) => {
   const hex = parseInt(component, 10).toString(16).toUpperCase();
   if (hex.length === 1) {
@@ -42,7 +44,11 @@ const command = function (selector, callback, cssProperty = 'color') {
     this.execute(funcBody, funcArgs, (result) => {
       const rgb = JSON.parse(result.value);
       const hex = parseRgbToHex(rgb);
-      console.log(`Selector ${selector} has ${cssProperty} ${hex}`);
+      console.log(
+        `Selector ${chalk.cyan(selector)} has CSS property ${chalk.cyan(
+          cssProperty
+        )} of ${chalk.cyan(hex)}`
+      );
       callback(hex);
     });
   });
