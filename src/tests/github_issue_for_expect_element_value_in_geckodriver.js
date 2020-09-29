@@ -1,7 +1,7 @@
 module.exports = {
   '@disabled': false,
 
-  '@tags': ['https://github.com/nightwatchjs/nightwatch/issues/2503'],
+  '@tags': ['SKIP', 'https://github.com/nightwatchjs/nightwatch/issues/2503'],
 
   'github issue for expect element value in geckodriver': (browser) => {
     const scriptBody = function () {
