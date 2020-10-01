@@ -1,3 +1,6 @@
+const chalk = require('chalk');
+const {makePrettyJson} = require('./shared');
+
 /**
  * Click an element.
  *
@@ -109,6 +112,28 @@ const assertNotEnabled = (browser, selector) => {
   browser.expect.element(selector).to.not.be.enabled;
 };
 
+/**
+ * Switch to a tab.
+ *
+ * @param {object} browser - The browser object
+ * @param {number} [tabIndexToSwitchTo] - The tab index to switch to
+ */
+const switchToTab = (browser, tabIndexToSwitchTo = 1) => {
+  browser.windowHandles((response) => {
+    const tabs = response.value;
+    const windowHandle = tabs[tabIndexToSwitchTo];
+    console.log('tabs:', chalk.cyan(makePrettyJson(tabs)));
+    const switchWindowCallback = () => {
+      console.log(
+        `Switched to tab index of ${chalk.cyan(
+          tabIndexToSwitchTo
+        )}, window handle of ${chalk.cyan(windowHandle)}`
+      );
+    };
+    browser.switchWindow(windowHandle, switchWindowCallback);
+  });
+};
+
 module.exports = {
   click,
   setValue,
@@ -116,5 +141,6 @@ module.exports = {
   assertText,
   assertContainsText,
   assertEnabled,
-  assertNotEnabled
+  assertNotEnabled,
+  switchToTab
 };
