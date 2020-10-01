@@ -134,6 +134,34 @@ const switchToTab = (browser, tabIndexToSwitchTo = 1) => {
   });
 };
 
+/**
+ * Log the value of an element.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ */
+const logValue = (browser, selector) => {
+  browser.getValue(selector, (response) => {
+    console.log(
+      `Element ${chalk.cyan(selector)} value is ${chalk.cyan(response.value)}`
+    );
+  });
+};
+
+/**
+ * Log the text of an element.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ */
+const logText = (browser, selector) => {
+  browser.getText(selector, (response) => {
+    console.log(
+      `Element ${chalk.cyan(selector)} text is ${chalk.cyan(response.value)}`
+    );
+  });
+};
+
 module.exports = {
   click,
   setValue,
@@ -142,5 +170,7 @@ module.exports = {
   assertContainsText,
   assertEnabled,
   assertNotEnabled,
-  switchToTab
+  switchToTab,
+  logValue,
+  logText
 };
