@@ -86,7 +86,7 @@ const makeLocalChromeEnv = (args) => ({
   desiredCapabilities: {
     browserName: 'chrome',
     'goog:chromeOptions': {
-      // w3c: false,
+      w3c: false,
       args: [...args, ...getExtraChromeArgs()]
     }
   }
@@ -100,7 +100,7 @@ const makeDockerChromeEnv = (args) => ({
   desiredCapabilities: {
     browserName: 'chrome',
     'goog:chromeOptions': {
-      // w3c: false,
+      w3c: false,
       args: [...args, ...getExtraChromeArgs()]
     }
   }
