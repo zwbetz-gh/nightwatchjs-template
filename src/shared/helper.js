@@ -20,7 +20,10 @@ const click = (browser, selector, text, viaJs = false) => {
   if (viaJs) {
     browser.custom_js_click(selector);
   } else {
-    browser.click(selector);
+    const clickCallback = () => {
+      console.log(`Element ${chalk.cyan(selector)} clicked`);
+    };
+    browser.click(selector, clickCallback);
   }
 };
 
@@ -46,7 +49,12 @@ const setValue = (
   if (viaJs) {
     browser.custom_js_set_value(selector, value);
   } else {
-    browser.setValue(selector, value);
+    const setValueCallback = () => {
+      console.log(
+        `Element ${chalk.cyan(selector)} value set to ${chalk.cyan(value)}`
+      );
+    };
+    browser.setValue(selector, value, setValueCallback);
   }
 
   if (assertValue) {
@@ -79,6 +87,18 @@ const assertText = (browser, selector, text) => {
 };
 
 /**
+ * Assert that an element contains value.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} value - The value to assert
+ */
+const assertContainsValue = (browser, selector, value) => {
+  browser.waitForElementVisible(selector);
+  browser.expect.element(selector).value.to.contain(value);
+};
+
+/**
  * Assert that an element contains text.
  *
  * @param {object} browser - The browser object
@@ -87,7 +107,7 @@ const assertText = (browser, selector, text) => {
  */
 const assertContainsText = (browser, selector, text) => {
   browser.waitForElementVisible(selector);
-  browser.assert.containsText(selector, text);
+  browser.expect.element(selector).text.to.contain(text);
 };
 
 /**
@@ -110,28 +130,6 @@ const assertEnabled = (browser, selector) => {
 const assertNotEnabled = (browser, selector) => {
   browser.waitForElementVisible(selector);
   browser.expect.element(selector).to.not.be.enabled;
-};
-
-/**
- * Switch to a tab.
- *
- * @param {object} browser - The browser object
- * @param {number} [tabIndexToSwitchTo] - The tab index to switch to
- */
-const switchToTab = (browser, tabIndexToSwitchTo = 1) => {
-  browser.windowHandles((response) => {
-    const tabs = response.value;
-    const windowHandle = tabs[tabIndexToSwitchTo];
-    console.log('tabs:', chalk.cyan(makePrettyJson(tabs)));
-    const switchWindowCallback = () => {
-      console.log(
-        `Switched to tab index of ${chalk.cyan(
-          tabIndexToSwitchTo
-        )}, window handle of ${chalk.cyan(windowHandle)}`
-      );
-    };
-    browser.switchWindow(windowHandle, switchWindowCallback);
-  });
 };
 
 /**
@@ -162,15 +160,38 @@ const logText = (browser, selector) => {
   });
 };
 
+/**
+ * Switch to a tab.
+ *
+ * @param {object} browser - The browser object
+ * @param {number} [tabIndexToSwitchTo] - The tab index to switch to
+ */
+const switchToTab = (browser, tabIndexToSwitchTo = 1) => {
+  browser.windowHandles((response) => {
+    const tabs = response.value;
+    const windowHandle = tabs[tabIndexToSwitchTo];
+    console.log('tabs:', chalk.cyan(makePrettyJson(tabs)));
+    const switchWindowCallback = () => {
+      console.log(
+        `Switched to tab index of ${chalk.cyan(
+          tabIndexToSwitchTo
+        )}, window handle of ${chalk.cyan(windowHandle)}`
+      );
+    };
+    browser.switchWindow(windowHandle, switchWindowCallback);
+  });
+};
+
 module.exports = {
   click,
   setValue,
   assertValue,
   assertText,
+  assertContainsValue,
   assertContainsText,
   assertEnabled,
   assertNotEnabled,
-  switchToTab,
   logValue,
-  logText
+  logText,
+  switchToTab
 };
