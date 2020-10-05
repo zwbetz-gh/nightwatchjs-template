@@ -18,6 +18,7 @@ module.exports = {
   helper: (browser) => {
     const theLabelId = '#the_label';
     const theInputId = '#the_input';
+    const theButtonId = '#the_button';
     const theAnchorId = '#the_anchor';
 
     const scriptBody = function () {
@@ -33,6 +34,23 @@ module.exports = {
       theInput.id = 'the_input';
       theInput.style.display = 'block';
       document.body.appendChild(theInput);
+
+      const theButton = document.createElement('button');
+      theButton.onclick = () => {
+        const el = document.querySelector('#the_input');
+        const attribute = 'disabled';
+        if (el) {
+          if (el.hasAttribute(attribute)) {
+            el.removeAttribute(attribute);
+          } else {
+            el.setAttribute(attribute, '');
+          }
+        }
+      };
+      theButton.textContent = 'the button';
+      theButton.id = 'the_button';
+      theButton.style.display = 'block';
+      document.body.appendChild(theButton);
 
       const href = 'https://example.org';
       const theAnchor = document.createElement('a');
@@ -61,17 +79,35 @@ module.exports = {
 
     helper.setValue(browser, theInputId, 'the value');
 
+    helper.assertPresent(browser, theInputId);
+
+    helper.assertNotPresent(browser, '#does_not_exist');
+
     helper.assertValue(browser, theInputId, 'the value');
+
+    helper.assertNotValue(browser, theInputId, 'not');
 
     helper.assertText(browser, theLabelId, 'the label');
 
+    helper.assertNotText(browser, theLabelId, 'not');
+
     helper.assertContainsValue(browser, theInputId, 'value');
 
+    helper.assertNotContainsValue(browser, theInputId, 'not');
+
     helper.assertContainsText(browser, theLabelId, 'label');
+
+    helper.assertNotContainsText(browser, theLabelId, 'not');
 
     helper.logValue(browser, theInputId);
 
     helper.logText(browser, theLabelId);
+
+    helper.assertEnabled(browser, theInputId);
+
+    helper.click(browser, theButtonId);
+
+    helper.assertNotEnabled(browser, theInputId);
 
     helper.click(browser, theAnchorId, 'https://example.org');
 

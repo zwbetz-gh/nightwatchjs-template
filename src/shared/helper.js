@@ -63,51 +63,111 @@ const setValue = (
 };
 
 /**
- * Assert the value of an element.
+ * Assert that the element is present.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ */
+const assertPresent = (browser, selector) => {
+  browser.expect.element(selector).to.be.present;
+};
+
+/**
+ * Assert that the element is not present.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ */
+const assertNotPresent = (browser, selector) => {
+  browser.expect.element(selector).to.not.be.present;
+};
+
+/**
+ * Assert that the element value does equal the expected value.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
  * @param {string} value - The value to assert
  */
 const assertValue = (browser, selector, value) => {
-  browser.waitForElementVisible(selector);
   browser.expect.element(selector).value.to.equal(value);
 };
 
 /**
- * Assert the text of an element.
+ * Assert that the element value does not equal the expected value.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} value - The value to assert
+ */
+const assertNotValue = (browser, selector, value) => {
+  browser.expect.element(selector).value.to.not.equal(value);
+};
+
+/**
+ * Assert that the element text does equal the expected text.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
  * @param {string} text - The text to assert
  */
 const assertText = (browser, selector, text) => {
-  browser.waitForElementVisible(selector);
   browser.expect.element(selector).text.to.equal(text);
 };
 
 /**
- * Assert that an element contains value.
+ * Assert that the element text does not equal the expected text.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} text - The text to assert
+ */
+const assertNotText = (browser, selector, text) => {
+  browser.expect.element(selector).text.to.not.equal(text);
+};
+
+/**
+ * Assert that the element value does contain the expected value.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
  * @param {string} value - The value to assert
  */
 const assertContainsValue = (browser, selector, value) => {
-  browser.waitForElementVisible(selector);
   browser.expect.element(selector).value.to.contain(value);
 };
 
 /**
- * Assert that an element contains text.
+ * Assert that the element value does not contain the expected value.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} value - The value to assert
+ */
+const assertNotContainsValue = (browser, selector, value) => {
+  browser.expect.element(selector).value.to.not.contain(value);
+};
+
+/**
+ * Assert that the element text does contain the expected text.
  *
  * @param {object} browser - The browser object
  * @param {string} selector - The CSS selector
  * @param {string} text - The text to assert
  */
 const assertContainsText = (browser, selector, text) => {
-  browser.waitForElementVisible(selector);
   browser.expect.element(selector).text.to.contain(text);
+};
+
+/**
+ * Assert that the element text does not contain the expected text.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} text - The text to assert
+ */
+const assertNotContainsText = (browser, selector, text) => {
+  browser.expect.element(selector).text.to.not.contain(text);
 };
 
 /**
@@ -117,7 +177,6 @@ const assertContainsText = (browser, selector, text) => {
  * @param {string} selector - The CSS selector
  */
 const assertEnabled = (browser, selector) => {
-  browser.waitForElementVisible(selector);
   browser.expect.element(selector).to.be.enabled;
 };
 
@@ -128,7 +187,6 @@ const assertEnabled = (browser, selector) => {
  * @param {string} selector - The CSS selector
  */
 const assertNotEnabled = (browser, selector) => {
-  browser.waitForElementVisible(selector);
   browser.expect.element(selector).to.not.be.enabled;
 };
 
@@ -185,10 +243,16 @@ const switchToTab = (browser, tabIndexToSwitchTo = 1) => {
 module.exports = {
   click,
   setValue,
+  assertPresent,
+  assertNotPresent,
   assertValue,
+  assertNotValue,
   assertText,
+  assertNotText,
   assertContainsValue,
+  assertNotContainsValue,
   assertContainsText,
+  assertNotContainsText,
   assertEnabled,
   assertNotEnabled,
   logValue,
