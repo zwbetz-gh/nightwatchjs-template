@@ -191,6 +191,18 @@ const assertNotEnabled = (browser, selector) => {
 };
 
 /**
+ * Assert that the element attribute equals the expected value.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} attribute - The attribute to assert
+ * @param {string} value - The value to assert
+ */
+const assertAttribute = (browser, selector, attribute, value) => {
+  browser.expect.element(selector).attribute(attribute).to.equal(value);
+};
+
+/**
  * Log the value of an element.
  *
  * @param {object} browser - The browser object
@@ -214,6 +226,23 @@ const logText = (browser, selector) => {
   browser.getText(selector, (response) => {
     console.log(
       `Element ${chalk.cyan(selector)} text is ${chalk.cyan(response.value)}`
+    );
+  });
+};
+
+/**
+ * Log the attribute of an element.
+ *
+ * @param {object} browser - The browser object
+ * @param {string} selector - The CSS selector
+ * @param {string} attribute - The attribute to log
+ */
+const logAttribute = (browser, selector, attribute) => {
+  browser.getAttribute(selector, attribute, (response) => {
+    console.log(
+      `Element ${chalk.cyan(selector)} attribute ${chalk.cyan(
+        attribute
+      )} is ${chalk.cyan(response.value)}`
     );
   });
 };
@@ -255,7 +284,9 @@ module.exports = {
   assertNotContainsText,
   assertEnabled,
   assertNotEnabled,
+  assertAttribute,
   logValue,
   logText,
+  logAttribute,
   switchToTab
 };

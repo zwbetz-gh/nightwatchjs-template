@@ -99,9 +99,13 @@ module.exports = {
 
     helper.assertNotContainsText(browser, theLabelId, 'not');
 
+    helper.assertAttribute(browser, theInputId, 'type', 'text');
+
     helper.logValue(browser, theInputId);
 
     helper.logText(browser, theLabelId);
+
+    helper.logAttribute(browser, theInputId, 'type');
 
     helper.assertEnabled(browser, theInputId);
 
