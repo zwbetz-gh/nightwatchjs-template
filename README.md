@@ -1,3 +1,9 @@
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
+**WARNING:** This repo is no longer maintained. It's archived and read-only.
+
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
 # NightwatchJS Template
 
 [Nightwatch](https://nightwatchjs.org/) is a fun, robust end-to-end testing framework. As with any popular framework, inevitably there are opinions of how things should be organized, and what you should or should not do.
